@@ -2,17 +2,17 @@ import ReactIcon from './skillsIcons/react.svg'
 import NextIcon from './skillsIcons/nextjs.svg'
 import TailwindIcon from './skillsIcons/tailwind.svg'
 import JavaScriptIcon from './skillsIcons/javascript.svg'
-import CIcon from './skillsIcons/C.svg';
-import CPPIcon from './skillsIcons/Cpp.svg';
+import CIcon from './skillsIcons/c.svg';
+import CPPIcon from './skillsIcons/cpp.svg';
 import PythonIcon from './skillsIcons/python.svg';
 import NodeIcon from './skillsIcons/nodejs.svg';
 import ExpressIcon from './skillsIcons/express.svg';
-import PostgreSQLIcon from './skillsIcons/PostgresSQL.svg';
+import PostgreSQLIcon from './skillsIcons/postgresSQL.svg';
 import MongoDBIcon from './skillsIcons/mongodb.svg';
 import gcpIcon from './skillsIcons/gcp.svg';
 import DockerIcon from './skillsIcons/docker.svg';
-import GitIcon from './skillsIcons/Git.svg';
-import LinuxIcon from './skillsIcons/Linux.svg';
+import GitIcon from './skillsIcons/git.svg';
+import LinuxIcon from './skillsIcons/linux.svg';
 // --- INTERFACES ---
 
 export interface Skill {
