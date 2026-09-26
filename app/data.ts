@@ -206,7 +206,7 @@ export const PROJECTS_DATA: ProjectEntry[] = [
     {
         title: 'Budget Management App',
         tech: 'MERN Stack, MongoDB, Node.js',
-        liveDemo: null,
+        liveDemo: 'https://budgetsn.vercel.app/',
         repo: null,
         bullets: [
             'Full-stack expense tracking platform featuring automated recurring bill reminders and dynamic salary dashboards using indexed MongoDB queries.',
