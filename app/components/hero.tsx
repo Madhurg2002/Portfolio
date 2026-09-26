@@ -59,23 +59,23 @@ export const Hero: React.FC = () => {
                     <div className="rise rise-3 flex flex-wrap items-center gap-4 mb-12">
                         <a
                             href="#projects"
-                            className="inline-flex items-center px-6 py-3 rounded-xl bg-heat-400 text-carbon-950 font-semibold hover:bg-heat-300 transition duration-200 hover:-translate-y-0.5 shadow-lg shadow-heat-500/25"
+                            className="inline-flex items-center px-6 py-3 rounded-xl bg-heat-400 on-accent font-semibold hover:bg-heat-300 transition duration-200 hover:-translate-y-0.5 shadow-lg shadow-heat-500/25"
                         >
                             View my work
                             <Icon name="arrow-down-right" className="w-4 h-4 ml-2" />
                         </a>
                         <a
                             href="#contact"
-                            className="inline-flex items-center px-6 py-3 rounded-xl border border-carbon-600 text-carbon-200 font-medium hover:border-heat-400/60 hover:text-white transition duration-200 hover:-translate-y-0.5"
+                            className="inline-flex items-center px-6 py-3 rounded-xl border border-carbon-600 text-carbon-200 font-medium hover:border-heat-400/60 hover:text-carbon-100 transition duration-200 hover:-translate-y-0.5"
                         >
                             Get in touch
                         </a>
                         <a
-                            href={resume.url ?? '#'}
+                            href={resume.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            title={resume.name ? `Latest resume: ${resume.name}` : 'Resume folder on Google Drive'}
-                            className="inline-flex items-center px-6 py-3 rounded-xl border border-carbon-600 text-carbon-200 font-medium hover:border-heat-400/60 hover:text-white transition duration-200 hover:-translate-y-0.5"
+                            title={resume.name ? `Latest resume: ${resume.name}` : 'Latest resume from Google Drive'}
+                            className="inline-flex items-center px-6 py-3 rounded-xl border border-carbon-600 text-carbon-200 font-medium hover:border-heat-400/60 hover:text-carbon-100 transition duration-200 hover:-translate-y-0.5"
                         >
                             <Icon name="file-text" className="w-4 h-4 mr-2" />
                             Resume
@@ -85,7 +85,7 @@ export const Hero: React.FC = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="GitHub profile"
-                            className="inline-flex items-center justify-center w-11 h-11 rounded-xl border border-carbon-600 text-carbon-300 hover:text-white hover:border-heat-400/60 transition duration-200 hover:-translate-y-0.5"
+                            className="inline-flex items-center justify-center w-11 h-11 rounded-xl border border-carbon-600 text-carbon-300 hover:text-carbon-100 hover:border-heat-400/60 transition duration-200 hover:-translate-y-0.5"
                         >
                             <Icon name="github" className="w-5 h-5" />
                         </a>
@@ -98,7 +98,7 @@ export const Hero: React.FC = () => {
                             ['1k+', 'DSA problems'],
                         ].map(([value, label]) => (
                             <div key={label}>
-                                <p className="text-2xl font-bold text-white font-mono">{value}</p>
+                                <p className="text-2xl font-bold text-carbon-100 font-mono">{value}</p>
                                 <p className="text-xs text-carbon-400 kicker mt-1">{label}</p>
                             </div>
                         ))}
@@ -117,11 +117,11 @@ export const Hero: React.FC = () => {
                         </div>
                         <div className="p-5 font-mono text-sm leading-7">
                             <p className="text-carbon-400">// current status</p>
-                            <p className="text-white">
+                            <p className="text-carbon-100">
                                 <span className="text-phosphor-400">const</span> role <span className="text-carbon-500">=</span>{' '}
                                 <span className="text-heat-300">'Full Stack Dev @ Qen Labs'</span>;
                             </p>
-                            <p className="text-white">
+                            <p className="text-carbon-100">
                                 <span className="text-phosphor-400">const</span> focus <span className="text-carbon-500">=</span>{' '}
                                 <span className="text-heat-300">'geospatial + realtime systems'</span>;
                             </p>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Section, SectionHeader, Icon, useLucideIcons } from './utils';
-import { GITHUB_PROFILE_URL, RESUME_DRIVE_FOLDER_URL } from '../data';
+import { GITHUB_PROFILE_URL } from '../data';
 import { useLatestResume } from './resume';
 
 const ACHIEVEMENTS = [
@@ -37,7 +37,7 @@ export const AchievementsAndEducation: React.FC = () => {
                     <Icon name="graduation-cap" className="w-5 h-5" />
                 </div>
                 <div>
-                    <h3 className="text-base font-semibold text-white mb-1">
+                    <h3 className="text-base font-semibold text-carbon-100 mb-1">
                         Indian Institute of Information Technology (IIIT), Kota
                     </h3>
                     <p className="text-sm text-carbon-300">Bachelor of Technology in Electronics and Communication · Dec 2020 — June 2024 · Kota, Rajasthan</p>
@@ -52,7 +52,7 @@ export const AchievementsAndEducation: React.FC = () => {
                         <Icon name={a.icon} className="w-5 h-5" />
                     </div>
                     <div>
-                        <h3 className="text-base font-semibold text-white mb-1.5">{a.title}</h3>
+                        <h3 className="text-base font-semibold text-carbon-100 mb-1.5">{a.title}</h3>
                         <p className="text-sm text-carbon-300 leading-relaxed">{a.text}</p>
                     </div>
                 </div>
@@ -103,7 +103,7 @@ export const Contact: React.FC = () => {
     <Section id="contact" className="text-center">
         <div className="max-w-2xl mx-auto">
             <p className="kicker text-xs text-heat-400 mb-3">/05 — ping me</p>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white mb-5">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-carbon-100 mb-5">
                 Let's Connect
             </h2>
             <p className="text-carbon-300 mb-4 leading-relaxed">
@@ -118,18 +118,18 @@ export const Contact: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
             <a
-                href={resume.url ?? RESUME_DRIVE_FOLDER_URL}
+                href={resume.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                title={resume.name ? `Latest resume: ${resume.name}` : 'Resume folder on Google Drive'}
+                title={resume.name ? `Latest resume: ${resume.name}` : 'Latest resume from Google Drive'}
                 className="group flex flex-col items-center p-6 rounded-2xl border border-carbon-700 bg-carbon-850 transition duration-300 hover:border-heat-400/50 hover:-translate-y-1 hover:shadow-xl hover:shadow-heat-500/10 sm:col-span-2 lg:col-span-4"
             >
                 <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-carbon-700 bg-carbon-900 text-heat-400 group-hover:text-heat-300 group-hover:border-heat-400/40 mb-4 transition duration-300">
                     <Icon name="file-text" className="w-5 h-5" />
                 </span>
-                <span className="text-white font-semibold mb-1">Resume</span>
+                <span className="text-carbon-100 font-semibold mb-1">Resume</span>
                 <span className="text-carbon-400 text-sm">
-                    {resume.name ? `Latest: ${resume.name}` : 'View the latest resume on Google Drive'}
+                    {resume.name ? `Latest: ${resume.name}` : 'Always the latest version'}
                 </span>
             </a>
             {CONTACTS.map((c) => (
@@ -143,7 +143,7 @@ export const Contact: React.FC = () => {
                     <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-carbon-700 bg-carbon-900 text-heat-400 group-hover:text-heat-300 group-hover:border-heat-400/40 mb-4 transition duration-300">
                         <Icon name={c.icon} className="w-5 h-5" />
                     </span>
-                    <span className="text-white font-semibold mb-1">{c.label}</span>
+                    <span className="text-carbon-100 font-semibold mb-1">{c.label}</span>
                     <span className="text-carbon-400 text-sm break-all">{c.value}</span>
                 </a>
             ))}

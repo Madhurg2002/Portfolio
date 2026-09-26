@@ -28,7 +28,7 @@ export const Skills: React.FC = () => {
                                             className="skill-icon w-5 h-5"
                                         />
                                     </span>
-                                    <span className="text-sm font-medium text-carbon-200 group-hover:text-white transition">{skill.name}</span>
+                                    <span className="text-sm font-medium text-carbon-200 group-hover:text-carbon-100 transition">{skill.name}</span>
                                 </a>
                             ))}
                         </div>

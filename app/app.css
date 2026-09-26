@@ -104,6 +104,26 @@ body {
   color: transparent;
 }
 
+/* Deepened gradient hues so the headline keeps contrast on white */
+html.light .text-gradient {
+  background: linear-gradient(100deg, #b45309 0%, #047857 55%, #0369a1 115%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Text on amber buttons: heat-400 flips to a deeper amber in light mode,
+   so the button label must stay near-black in BOTH themes to keep contrast. */
+.on-accent {
+  color: #1c1917;
+}
+
+/* On light mode, hovering the amber CTA brightens instead of darkens
+   (dark text keeps its contrast on a lighter amber). */
+html.light .hover\:bg-heat-300:hover {
+  background-color: #f59e0b;
+}
+
 .kicker {
   font-family: var(--font-mono);
   text-transform: uppercase;

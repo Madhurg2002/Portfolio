@@ -47,14 +47,14 @@ export const Projects: React.FC = () => {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={`${project.title} source code`}
-                                        className="p-2 rounded-lg text-carbon-400 hover:text-white hover:bg-carbon-800 transition"
+                                        className="p-2 rounded-lg text-carbon-400 hover:text-carbon-100 hover:bg-carbon-800 transition"
                                     >
                                         <Icon name="github" className="w-5 h-5" />
                                     </a>
                                 )}
                             </div>
 
-                            <h3 className="text-xl font-semibold text-white mb-2">
+                            <h3 className="text-xl font-semibold text-carbon-100 mb-2">
                                 <a
                                     href={titleHref}
                                     target="_blank"
@@ -158,13 +158,13 @@ export const Projects: React.FC = () => {
                         <div className="sticky top-0 flex items-start justify-between gap-4 border-b border-carbon-700 bg-carbon-850/95 backdrop-blur px-6 py-5">
                             <div>
                                 <p className="kicker text-[11px] text-heat-400 mb-1.5">what i did</p>
-                                <h3 className="text-lg font-semibold text-white leading-snug">{openProject.title}</h3>
+                                <h3 className="text-lg font-semibold text-carbon-100 leading-snug">{openProject.title}</h3>
                             </div>
                             <button
                                 type="button"
                                 onClick={() => setOpenIndex(null)}
                                 aria-label="Close"
-                                className="p-2 -m-1 rounded-lg text-carbon-400 hover:text-white hover:bg-carbon-800 transition"
+                                className="p-2 -m-1 rounded-lg text-carbon-400 hover:text-carbon-100 hover:bg-carbon-800 transition"
                             >
                                 <Icon name="x" className="w-5 h-5" />
                             </button>
@@ -196,7 +196,7 @@ export const Projects: React.FC = () => {
                                         href={openProject.liveDemo}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-heat-400 text-carbon-950 text-sm font-semibold hover:bg-heat-300 transition"
+                                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-heat-400 on-accent text-sm font-semibold hover:bg-heat-300 transition"
                                     >
                                         <Icon name="external-link" className="w-4 h-4" />
                                         Open live demo
@@ -207,7 +207,7 @@ export const Projects: React.FC = () => {
                                         href={openProject.repo}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-carbon-600 text-sm font-medium text-carbon-200 hover:border-heat-400/60 hover:text-white transition"
+                                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-carbon-600 text-sm font-medium text-carbon-200 hover:border-heat-400/60 hover:text-carbon-100 transition"
                                     >
                                         <Icon name="github" className="w-4 h-4" />
                                         View code

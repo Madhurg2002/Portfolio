@@ -33,7 +33,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({ index, title }) =>
     <div className="mb-12 flex items-end justify-between gap-4">
         <div>
             <p className="kicker text-xs text-heat-400 mb-3">{index}</p>
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white">{title}</h2>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-carbon-100">{title}</h2>
         </div>
         <div className="hidden sm:block h-px flex-1 max-w-xs bg-gradient-to-r from-carbon-600 to-transparent mb-2" />
     </div>

@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
         <header className="fixed top-0 inset-x-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mt-4 flex items-center justify-between h-14 px-5 rounded-2xl border border-carbon-700/70 bg-carbon-900/70 backdrop-blur-xl shadow-lg shadow-black/30">
-                    <a href="#home" className="font-mono text-sm font-semibold tracking-tight text-white">
+                    <a href="#home" className="font-mono text-sm font-semibold tracking-tight text-carbon-100">
                         <span className="text-heat-400">~</span>/madhur<span className="text-phosphor-400">.dev</span>
                     </a>
                     <nav className="hidden md:flex items-center gap-1">
@@ -19,7 +19,7 @@ export const Navbar: React.FC = () => {
                             <a
                                 key={id}
                                 href={`#${id}`}
-                                className="px-3 py-1.5 rounded-lg text-sm text-carbon-300 hover:text-white hover:bg-carbon-800 transition duration-200"
+                                className="px-3 py-1.5 rounded-lg text-sm text-carbon-300 hover:text-carbon-100 hover:bg-carbon-800 transition duration-200"
                             >
                                 <span className="font-mono text-xs text-heat-400/80 mr-1.5">0{i + 1}.</span>
                                 {id}
@@ -37,7 +37,7 @@ export const Navbar: React.FC = () => {
                         <button
                             type="button"
                             onClick={() => setOpen(!open)}
-                            className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg text-carbon-300 hover:text-white hover:bg-carbon-800 transition"
+                            className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg text-carbon-300 hover:text-carbon-100 hover:bg-carbon-800 transition"
                             aria-label="Toggle menu"
                         >
                             <Icon name={open ? 'x' : 'menu'} className="w-5 h-5" />
@@ -52,7 +52,7 @@ export const Navbar: React.FC = () => {
                                 key={id}
                                 href={`#${id}`}
                                 onClick={() => setOpen(false)}
-                                className="flex items-center px-5 py-3 text-sm text-carbon-300 hover:text-white hover:bg-carbon-800 transition border-b border-carbon-800 last:border-b-0"
+                                className="flex items-center px-5 py-3 text-sm text-carbon-300 hover:text-carbon-100 hover:bg-carbon-800 transition border-b border-carbon-800 last:border-b-0"
                             >
                                 <span className="font-mono text-xs text-heat-400/80 mr-3">0{i + 1}.</span>
                                 {id}

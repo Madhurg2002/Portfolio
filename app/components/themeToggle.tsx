@@ -13,7 +13,7 @@ export const ThemeToggle: React.FC<{ className?: string }> = ({ className = '' }
             onClick={toggle}
             aria-label={`Switch to ${nextLabel.toLowerCase()} mode (currently ${theme})`}
             title={`Switch to ${nextLabel.toLowerCase()} mode`}
-            className={`inline-flex items-center gap-2 h-9 pl-2.5 pr-3 rounded-lg border border-carbon-700 bg-carbon-850 text-carbon-300 hover:text-white hover:border-heat-400/50 transition ${className}`}
+            className={`inline-flex items-center gap-2 h-9 pl-2.5 pr-3 rounded-lg border border-carbon-700 bg-carbon-850 text-carbon-300 hover:text-carbon-100 hover:border-heat-400/50 transition ${className}`}
         >
             <Icon name={theme === 'dark' ? 'sun' : 'moon'} className="w-4 h-4 text-heat-400" />
             <span className="text-xs font-medium">{nextLabel}</span>
