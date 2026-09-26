@@ -70,7 +70,7 @@ export const Projects: React.FC = () => {
                                 </a>
                             </h3>
                             <p className="text-sm text-carbon-300 leading-relaxed mb-4">
-                                {project.bullets[0]}
+                                {project.summary}
                             </p>
 
                             {/* tech chips */}
