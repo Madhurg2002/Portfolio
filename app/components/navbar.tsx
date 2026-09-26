@@ -2,11 +2,17 @@ import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { Icon } from './utils';
 import { ThemeToggle } from './themeToggle';
+import { useFocusTrap } from './hooks';
 
 export const Navbar: React.FC = () => {
     const links = ['skills', 'experience', 'projects', 'achievements', 'contact'];
     const [open, setOpen] = useState(false);
     const toggleRef = useRef<HTMLButtonElement>(null);
+    // The trap spans the whole navbar (bar + panel), not just the panel: that
+    // keeps the hamburger reachable so the menu can be closed by toggling it
+    // again, while still cutting the page below off from the tab order.
+    const navRef = useRef<HTMLDivElement>(null);
+    const firstLinkRef = useRef<HTMLAnchorElement>(null);
 
     // Escape closes the mobile menu and returns focus to the hamburger.
     useEffect(() => {
@@ -20,9 +26,13 @@ export const Navbar: React.FC = () => {
         return () => window.removeEventListener('keydown', onKey);
     }, [open]);
 
+    // While the menu is open, Tab cycles within the navbar and everything
+    // below it is inert.
+    useFocusTrap(navRef, open, { initialFocus: firstLinkRef });
+
     return (
         <header className="fixed top-0 inset-x-0 z-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div ref={navRef} tabIndex={-1} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mt-4 flex items-center justify-between h-14 px-5 rounded-2xl border border-carbon-700/70 bg-carbon-900/70 backdrop-blur-xl shadow-lg shadow-black/30">
                     <a href="#home" className="min-w-0 truncate font-mono text-sm font-semibold tracking-tight text-carbon-100">
                         <span className="text-heat-400">~</span>/madhur<span className="text-phosphor-400">.dev</span>
@@ -70,6 +80,7 @@ export const Navbar: React.FC = () => {
                         {links.map((id, i) => (
                             <a
                                 key={id}
+                                ref={i === 0 ? firstLinkRef : undefined}
                                 href={`#${id}`}
                                 onClick={() => setOpen(false)}
                                 className="flex items-center px-5 py-3 text-sm text-carbon-300 hover:text-carbon-100 hover:bg-carbon-800 transition border-b border-carbon-800 last:border-b-0"

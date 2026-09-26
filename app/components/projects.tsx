@@ -2,11 +2,15 @@ import type React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { PROJECTS_DATA, GITHUB_PROFILE_URL } from '../data';
 import { Section, SectionHeader, Icon } from './utils';
+import { useFocusTrap } from './hooks';
 
 export const Projects: React.FC = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const lastTrigger = useRef<HTMLButtonElement | null>(null);
     const closeRef = useRef<HTMLButtonElement>(null);
+    // Traps focus and inerts the page. The ref sits on the dialog wrapper
+    // rather than the panel so the backdrop stays clickable for dismissal.
+    const dialogRef = useRef<HTMLDivElement>(null);
 
     const openProject = openIndex !== null ? PROJECTS_DATA[openIndex] : null;
 
@@ -19,13 +23,17 @@ export const Projects: React.FC = () => {
         };
         window.addEventListener('keydown', onKey);
         document.body.style.overflow = 'hidden';
-        closeRef.current?.focus();
         return () => {
             window.removeEventListener('keydown', onKey);
             document.body.style.overflow = '';
             lastTrigger.current?.focus();
         };
     }, [openIndex]);
+
+    // Keep Tab inside the dialog and take the rest of the page out of the
+    // tab order and the accessibility tree while it is open, so the
+    // aria-modal="true" below is a promise the DOM actually keeps.
+    useFocusTrap(dialogRef, openIndex !== null, { initialFocus: closeRef });
 
     return (
         <Section id="projects">
@@ -131,8 +139,13 @@ export const Projects: React.FC = () => {
                                 {project.details && project.details.length > 0 && (
                                     <button
                                         type="button"
-                                        onClick={() => {
-                                            lastTrigger.current = document.activeElement as HTMLButtonElement;
+                                        onClick={e => {
+                                            // The element that fired the click, not
+                                            // document.activeElement: focus is not
+                                            // guaranteed to be on the button that was
+                                            // pressed, and the modal has to give it
+                                            // back on close.
+                                            lastTrigger.current = e.currentTarget;
                                             setOpenIndex(index);
                                         }}
                                         className="inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-medium text-heat-400 hover:text-heat-300 transition"
@@ -151,6 +164,10 @@ export const Projects: React.FC = () => {
             {/* What-I-did popup */}
             {openProject && (
                 <div
+                    ref={dialogRef}
+                    // -1 so the trap's "nothing focusable in here" fallback can
+                    // still land focus on the dialog instead of dropping it.
+                    tabIndex={-1}
                     role="dialog"
                     aria-modal="true"
                     aria-label={`What I did on ${openProject.title}`}

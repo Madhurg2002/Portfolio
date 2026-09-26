@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import type React from 'react';
 
 export type Theme = 'dark' | 'light';
 
@@ -40,4 +41,122 @@ export function useTheme(): { theme: Theme; toggle: () => void } {
     }, []);
 
     return { theme, toggle };
+}
+
+// --- FOCUS TRAPPING ---
+
+const FOCUSABLE_SELECTOR = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+].join(',');
+
+/**
+ * Whether `el` is actually rendered, and therefore tabbable.
+ *
+ * checkVisibility() is the check that gets this right: the project modal
+ * lives inside a `position: fixed` container, and offsetParent is null for
+ * every descendant of a fixed element, so the offsetParent test would
+ * report a perfectly visible button as hidden and empty out the trap.
+ * Older engines (Safari 15.5-17.3) have inert but not checkVisibility, so
+ * getClientRects is the fallback there.
+ */
+function isVisible(el: HTMLElement): boolean {
+    const check = (el as { checkVisibility?: (o?: object) => boolean }).checkVisibility;
+    if (typeof check === 'function') return check.call(el, { checkVisibilityCSS: true });
+    return el.getClientRects().length > 0;
+}
+
+/** Focusable descendants of `root`, in tab order. */
+function getFocusable(root: HTMLElement): HTMLElement[] {
+    return Array.from(root.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)).filter(isVisible);
+}
+
+/**
+ * Keep keyboard focus inside `ref` while `active`, and make everything else
+ * unreachable while it is.
+ *
+ * Two halves, because either alone is a half-fix:
+ *
+ *  - Tab / Shift-Tab wrap at the first and last focusable node. Without this,
+ *    Tab walks straight out of an open dialog into the page behind it.
+ *  - Every element outside the container's ancestor chain is marked `inert`.
+ *    `inert` removes the node from the tab order *and* from the accessibility
+ *    tree, which is what actually makes an `aria-modal="true"` promise true.
+ *    Wrapping alone still leaves background content exposed to screen
+ *    readers, which browse the tree rather than the tab order.
+ *
+ * Inerting siblings at every level (not just body's children) is what keeps
+ * the container reachable: the modal and the rest of the page share ancestors,
+ * so marking `document.body`'s direct children would inert the modal too.
+ *
+ * Everything added here is undone on cleanup, so the attributes never leak
+ * into the next render or the next open.
+ */
+export function useFocusTrap(
+    ref: React.RefObject<HTMLElement | null>,
+    active: boolean,
+    options: { initialFocus?: React.RefObject<HTMLElement | null> } = {},
+) {
+    const { initialFocus } = options;
+
+    useEffect(() => {
+        if (!active) return;
+        const container = ref.current;
+        if (!container) return;
+
+        // Mark everything outside the container inert, level by level.
+        const inerted: HTMLElement[] = [];
+        let node: HTMLElement | null = container;
+        while (node && node !== document.body && node.parentElement) {
+            const parent: HTMLElement = node.parentElement;
+            for (const sibling of Array.from(parent.children)) {
+                if (sibling === node || !(sibling instanceof HTMLElement)) continue;
+                if (sibling.hasAttribute('inert')) continue;
+                sibling.setAttribute('inert', '');
+                inerted.push(sibling);
+            }
+            node = parent;
+        }
+
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key !== 'Tab' || e.altKey || e.ctrlKey || e.metaKey) return;
+
+            const focusable = getFocusable(container);
+            if (focusable.length === 0) {
+                e.preventDefault();
+                container.focus();
+                return;
+            }
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            const current = document.activeElement;
+            const inside = container.contains(current);
+
+            // Focus sitting outside the container (the trigger that opened it,
+            // or body) is pulled in from whichever end the user is heading to.
+            if (e.shiftKey) {
+                if (!inside || current === first) {
+                    e.preventDefault();
+                    last.focus();
+                }
+            } else if (!inside || current === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        };
+
+        document.addEventListener('keydown', onKeyDown);
+
+        (initialFocus?.current ?? getFocusable(container)[0])?.focus();
+
+        return () => {
+            document.removeEventListener('keydown', onKeyDown);
+            for (const el of inerted) el.removeAttribute('inert');
+        };
+    }, [ref, active, initialFocus]);
 }
