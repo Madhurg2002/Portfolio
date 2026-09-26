@@ -108,12 +108,12 @@ export const EXPERIENCE_DATA: ExperienceEntry[] = [
         company: 'Qen Labs',
         duration: 'Feb 2024 — Present · Remote',
         bullets: [
-            'Built a high-throughput geospatial visualization engine using <strong>Kepler.gl</strong> and <strong>deck.gl</strong> to render datasets exceeding <strong>1M+ spatiotemporal points</strong>, leveraging viewport-driven rendering to reduce memory overhead by 40%.',
+            'Built a high-throughput geospatial visualization engine using <strong>Kepler.gl</strong> and <strong>deck.gl</strong> to render datasets of <strong>1M+ spatiotemporal points</strong>, leveraging viewport-driven rendering to reduce memory overhead by 40%.',
             'Engineered dynamic map tools and automated data ingestion pipelines for <strong>GeoJSON</strong> and <strong>H3 vector tiles</strong> across 10+ complex layers.',
             'Integrated AI workflows (<strong>Claude</strong>) into routine development for component scaffolding, test coverage automation, and system refactoring, boosting team sprint output by 30%.',
-            'Centralized global state management using <strong>Redux</strong> and decoupled monolithic frontend views into reusable <strong>TypeScript</strong> hooks, lowering technical debt.',
-            'Designed secure cloud data pipelines to fetch assets from <strong>Google Cloud Storage</strong> and deployed containerized micro-services on <strong>GCP Cloud Run</strong> with OAuth 2.0 security.',
-            'Streamlined environment setups by containerizing backend services with <strong>Docker</strong>, cutting build times by 50% across the GCP ecosystem.',
+            'Centralized global state management using <strong>Redux</strong> and broke up large views into reusable <strong>TypeScript</strong> hooks, reducing duplication.',
+            'Designed secure cloud data pipelines to fetch assets from <strong>Google Cloud Storage</strong> and deployed containerized microservices on <strong>GCP Cloud Run</strong> with OAuth 2.0 security.',
+            'Streamlined environment setups by containerizing backend services with <strong>Docker</strong>, cutting build times by 50% across the team.',
         ],
     },
     {
@@ -121,8 +121,8 @@ export const EXPERIENCE_DATA: ExperienceEntry[] = [
         company: 'Professos',
         duration: 'Jun 2023 — Aug 2023 · Remote',
         bullets: [
-            'Developed core features for a <strong>MERN stack</strong> recruitment portal designed to match job seekers with roles based on candidate skill profiles.',
-            'Re-architected frontend user layouts with <strong>Tailwind CSS</strong>, improving page load speed, component modularity, and overall UI responsiveness.',
+            'Developed core features for a <strong>MERN stack</strong> recruitment portal designed to match candidates with roles based on their skill profiles.',
+            'Re-architected frontend user layouts with <strong>Tailwind CSS</strong>, improving page load speed, component modularity, and UI responsiveness.',
         ],
     },
 ];
@@ -138,19 +138,19 @@ export const PROJECTS_DATA: ProjectEntry[] = [
             'Step-by-step visualizers for Graph (Dijkstra, A*) and Sorting algorithms, maintaining a smooth 60fps execution through optimized custom React Hooks.',
         ],
         details: [
-            'Built the WebSocket layer with Socket.io for sub-100ms synchronization latency for 50+ concurrent users in turn-based sessions.',
+            'Built the WebSocket layer with Socket.io, holding sub-100ms synchronization latency across 50+ concurrent users in turn-based sessions.',
             'Implemented step-by-step visualizers for Graph (Dijkstra, A*) and Sorting algorithms, maintaining smooth 60fps through optimized custom React Hooks.',
-            "Implemented a deterministic seed-based generator for Sudoku boards, producing unique, shareable game IDs and 100% reproducible board states.",
-            "Includes Conway's Game of Life and dynamic obstacle placement; production build shipped on Vercel with a responsive touch-friendly layout.",
+            'Implemented a deterministic, seed-based generator for Sudoku boards, producing unique, shareable game IDs and 100% reproducible board states.',
+            'Shipped Conway\u2019s Game of Life and dynamic obstacle placement; production build on Vercel with a responsive, touch-friendly layout.',
         ],
     },
     {
-        title: 'Prometheus Grafana Passthrough',
+        title: 'Prometheus Query Gateway',
         tech: 'TypeScript, Fastify, React, PostgreSQL, Vitest',
         liveDemo: 'https://grafana-helper.vercel.app/',
         repo: 'https://github.com/Madhurg2002/grafana',
         bullets: [
-            'High-throughput, stateless Fastify proxy and mobile-first React frontend for routing, caching, and streaming Prometheus PromQL queries — eliminating Grafana dependencies.',
+            'High-throughput, stateless Fastify proxy and mobile-first React frontend for routing, caching, and streaming Prometheus PromQL queries — so routine queries no longer need a full Grafana instance.',
             'PostgreSQL persistence with AES-256-GCM encrypted credentials, socket pooling via Undici, rate limiting, and a Vitest-tested codebase.',
         ],
         details: [
@@ -166,7 +166,7 @@ export const PROJECTS_DATA: ProjectEntry[] = [
         liveDemo: null,
         repo: 'https://github.com/Madhurg2002/Clean_dev',
         bullets: [
-            'High-performance, colorized CLI that scans directories and interactively cleans space-hogging dev caches (node_modules, venvs, __pycache__, Rust/Java/Gradle builds).',
+            'High-performance, colorized CLI that scans directories and interactively cleans disk-heavy development caches (node_modules, venvs, __pycache__, Rust/Java/Gradle builds).',
             'Detects safe-to-delete targets by checking parent manifests (package.json, Cargo.toml, pom.xml) before cleanup.',
         ],
         details: [
@@ -177,12 +177,12 @@ export const PROJECTS_DATA: ProjectEntry[] = [
         ],
     },
     {
-        title: 'TicTacToe with Minimax AI',
+        title: 'Tic-Tac-Toe with Minimax AI',
         tech: 'C++',
         liveDemo: null,
         repo: 'https://github.com/Madhurg2002/TicTacToe',
         bullets: [
-            'Unbeatable Tic-Tac-Toe opponent built on the minimax algorithm with alpha-beta style pruning of losing branches.',
+            'Unbeatable opponent built on the minimax algorithm with alpha-beta pruning of losing branches.',
             'Console-based C++ implementation exploring game-tree search depth versus performance.',
         ],
         details: [
@@ -197,7 +197,7 @@ export const PROJECTS_DATA: ProjectEntry[] = [
         liveDemo: null,
         repo: 'https://github.com/Madhurg2002/Web3-wave',
         bullets: [
-            'Decentralized wave portal where visitors connect a wallet and wave at me on-chain — built on Ethereum while learning Solidity.',
+            'Decentralized wave portal where visitors connect a wallet and leave a wave on-chain — built on Ethereum while learning Solidity.',
             'Contract interactions, transactions, and a frontend wired to the deployed smart contract on the Rinkeby test network.',
         ],
         details: [
