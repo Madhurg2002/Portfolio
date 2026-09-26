@@ -2,7 +2,7 @@
  * Inline Lucide icon data.
  *
  * These are the exact node definitions from lucide@0.462.0, narrowed to the
- * 19 icons this site actually renders. They used to be loaded as a
+ * 26 icons this site actually renders. They used to be loaded as a
  * 350KB UMD bundle from a CDN and swapped in at runtime by
  * `lucide.createIcons()`, which meant a blocked CDN silently blanked every
  * icon AND nothing rendered at all without JavaScript. Inlining them makes the
@@ -75,6 +75,13 @@ export const ICONS: Record<string, IconData> = {
     ['circle', {"cx":"20","cy":"19","r":"2"}],
     ],
   ],
+  'gauge': [
+    ['svg', {"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round"}],
+    [
+    ['path', {"d":"m12 14 4-4"}],
+    ['path', {"d":"M3.34 19a10 10 0 1 1 17.32 0"}],
+    ],
+  ],
   'globe-lock': [
     ['svg', {"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round"}],
     [
@@ -82,6 +89,16 @@ export const ICONS: Record<string, IconData> = {
     ['path', {"d":"M2 12h8.5"}],
     ['path', {"d":"M20 6V4a2 2 0 1 0-4 0v2"}],
     ['rect', {"width":"8","height":"5","x":"14","y":"6","rx":"1"}],
+    ],
+  ],
+  'grid-3x3': [
+    ['svg', {"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round"}],
+    [
+    ['rect', {"width":"18","height":"18","x":"3","y":"3","rx":"2"}],
+    ['path', {"d":"M3 9h18"}],
+    ['path', {"d":"M3 15h18"}],
+    ['path', {"d":"M9 3v18"}],
+    ['path', {"d":"M15 3v18"}],
     ],
   ],
   'graduation-cap': [
@@ -97,6 +114,24 @@ export const ICONS: Record<string, IconData> = {
     [
     ['rect', {"width":"18","height":"11","x":"3","y":"11","rx":"2","ry":"2"}],
     ['path', {"d":"M7 11V7a5 5 0 0 1 10 0v4"}],
+    ],
+  ],
+  'trash-2': [
+    ['svg', {"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round"}],
+    [
+    ['path', {"d":"M3 6h18"}],
+    ['path', {"d":"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"}],
+    ['path', {"d":"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"}],
+    ['line', {"x1":"10","x2":"10","y1":"11","y2":"17"}],
+    ['line', {"x1":"14","x2":"14","y1":"11","y2":"17"}],
+    ],
+  ],
+  'waves': [
+    ['svg', {"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round"}],
+    [
+    ['path', {"d":"M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"}],
+    ['path', {"d":"M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"}],
+    ['path', {"d":"M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"}],
     ],
   ],
   'x': [
@@ -135,10 +170,35 @@ export const ICONS: Record<string, IconData> = {
     ['path', {"d":"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"}],
     ],
   ],
+  'music-4': [
+    ['svg', {"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round"}],
+    [
+    ['path', {"d":"M9 18V5l12-2v13"}],
+    ['path', {"d":"m9 9 12-2"}],
+    ['circle', {"cx":"6","cy":"18","r":"3"}],
+    ['circle', {"cx":"18","cy":"16","r":"3"}],
+    ],
+  ],
   'phone': [
     ['svg', {"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round"}],
     [
     ['path', {"d":"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"}],
+    ],
+  ],
+  'piggy-bank': [
+    ['svg', {"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round"}],
+    [
+    ['path', {"d":"M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z"}],
+    ['path', {"d":"M2 9v1c0 1.1.9 2 2 2h1"}],
+    ['path', {"d":"M16 11h.01"}],
+    ],
+  ],
+  'route': [
+    ['svg', {"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round"}],
+    [
+    ['circle', {"cx":"6","cy":"19","r":"3"}],
+    ['path', {"d":"M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"}],
+    ['circle', {"cx":"18","cy":"5","r":"3"}],
     ],
   ],
   'trophy': [

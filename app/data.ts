@@ -41,6 +41,8 @@ export interface ExperienceEntry {
 
 export interface ProjectEntry {
     title: string;
+    /** Key into ICONS in app/components/icons.tsx; falls back to 'folder-git-2'. */
+    icon?: string;
     tech: string;
     liveDemo: string | null;
     repo: string | null;
@@ -130,6 +132,7 @@ export const EXPERIENCE_DATA: ExperienceEntry[] = [
 export const PROJECTS_DATA: ProjectEntry[] = [
     {
         title: 'Algorithm Visualizer & Multiplayer Platform',
+        icon: 'route',
         tech: 'React, Node.js, Socket.io, Tailwind CSS',
         liveDemo: 'https://visualiz.vercel.app',
         repo: 'https://github.com/Madhurg2002/Visualizer',
@@ -146,6 +149,7 @@ export const PROJECTS_DATA: ProjectEntry[] = [
     },
     {
         title: 'Prometheus Query Gateway',
+        icon: 'gauge',
         tech: 'TypeScript, Fastify, React, PostgreSQL, Vitest',
         liveDemo: 'https://grafana-helper.vercel.app/',
         repo: 'https://github.com/Madhurg2002/grafana',
@@ -162,6 +166,7 @@ export const PROJECTS_DATA: ProjectEntry[] = [
     },
     {
         title: 'DevCleaner CLI',
+        icon: 'trash-2',
         tech: 'Python',
         liveDemo: null,
         repo: 'https://github.com/Madhurg2002/Clean_dev',
@@ -178,6 +183,7 @@ export const PROJECTS_DATA: ProjectEntry[] = [
     },
     {
         title: 'Tic-Tac-Toe with Minimax AI',
+        icon: 'grid-3x3',
         tech: 'C++',
         liveDemo: null,
         repo: 'https://github.com/Madhurg2002/TicTacToe',
@@ -193,6 +199,7 @@ export const PROJECTS_DATA: ProjectEntry[] = [
     },
     {
         title: 'Web3 Wave DApp',
+        icon: 'waves',
         tech: 'JavaScript, Ethereum, Hardhat',
         liveDemo: null,
         repo: 'https://github.com/Madhurg2002/Web3-wave',
@@ -208,6 +215,7 @@ export const PROJECTS_DATA: ProjectEntry[] = [
     },
     {
         title: 'Discord Music Bot',
+        icon: 'music-4',
         tech: 'JavaScript, Node.js, Discord.js',
         liveDemo: null,
         repo: 'https://github.com/Madhurg2002/Discord-music-bot',
@@ -223,6 +231,7 @@ export const PROJECTS_DATA: ProjectEntry[] = [
     },
     {
         title: 'Budget Management App',
+        icon: 'piggy-bank',
         tech: 'MERN Stack, MongoDB, Node.js',
         liveDemo: 'https://budgetsn.vercel.app/',
         repo: null,

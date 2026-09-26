@@ -44,7 +44,7 @@ export const Projects: React.FC = () => {
                             {/* header */}
                             <div className="flex items-start justify-between mb-4">
                                 <div className="flex items-center justify-center w-11 h-11 rounded-xl border border-carbon-700 bg-carbon-900 text-heat-400 group-hover:text-heat-300 group-hover:border-heat-400/40 transition duration-300">
-                                    <Icon name="folder-git-2" className="w-5 h-5" />
+                                    <Icon name={project.icon ?? 'folder-git-2'} className="w-5 h-5" />
                                 </div>
                                 {project.repo && (
                                     <a
