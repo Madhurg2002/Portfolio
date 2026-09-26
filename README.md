@@ -32,7 +32,7 @@ Personal portfolio website showcasing my work as a Full Stack Developer.
 - [Tailwind CSS v4](https://tailwindcss.com)
 - [TypeScript](https://www.typescriptlang.org)
 - [Vite](https://vite.dev) + [Vitest](https://vitest.dev) for building and testing
-- [Lucide icons](https://lucide.dev) — only the 19 icons this site uses are inlined in `app/components/icons.tsx`, so they ship in the server-rendered HTML with no CDN request and no client-side icon swap. A test asserts every icon a component asks for exists there
+- [Lucide icons](https://lucide.dev) — only the 26 icons this site uses are inlined in `app/components/icons.tsx`, so they ship in the server-rendered HTML with no CDN request and no client-side icon swap. Each project card picks its own glyph from `data.ts`; a test asserts every icon referenced anywhere in `app/` exists there
 
 ## 📄 Resume — always the latest version
 
