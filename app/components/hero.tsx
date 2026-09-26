@@ -28,7 +28,7 @@ export const Hero: React.FC = () => {
             setDisplayedText(roles[0]);
             return;
         }
-        let timer: NodeJS.Timeout;
+        let timer: ReturnType<typeof setTimeout>;
         const currentRole: string = roles[roleIndex];
         const typingSpeed: number = isDeleting ? 40 : 85;
 

@@ -20,12 +20,17 @@ export const Skills: React.FC = () => {
                                     className="group flex items-center gap-3 min-w-0 p-3 sm:p-3.5 rounded-xl border border-carbon-700 bg-carbon-850 hover:border-heat-400/50 hover:bg-carbon-800 transition duration-200"
                                 >
                                     {/* theme-aware tile: dark in dark mode, light gray in light mode;
-                                        white monochrome logos get darkened via .skill-icon-white */}
+                                        white monochrome logos get darkened via .skill-icon-white.
+                                        alt is empty on purpose: the skill name is rendered right
+                                        beside the logo, so naming the image too would make a
+                                        screen reader announce every skill twice. */}
                                     <span className="skill-tile flex items-center justify-center w-9 h-9 rounded-lg bg-carbon-800 border border-carbon-700 flex-shrink-0 overflow-hidden">
                                         <img
                                             src={typeof skill.icon === 'string' ? skill.icon : undefined}
-                                            alt={skill.name}
+                                            alt=""
                                             loading="lazy"
+                                            width={20}
+                                            height={20}
                                             className={`skill-icon w-5 h-5${skill.whiteLogo ? ' skill-icon-white' : ''}`}
                                         />
                                     </span>
