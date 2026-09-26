@@ -48,6 +48,23 @@ export interface ProjectEntry {
 
 export const GITHUB_PROFILE_URL = 'https://github.com/Madhurg2002';
 
+// --- RESUME / DRIVE ---
+
+/**
+ * Google Drive folder holding every version of the resume.
+ * The site lists files in this folder and links the most recently
+ * modified one (see app/components/resume.ts).
+ *
+ * To enable the "latest file" resolution, set VITE_GOOGLE_DRIVE_API_KEY
+ * (Google Cloud console → APIs & Services → Credentials → API key,
+ * with the Google Drive API enabled). Without it, the buttons open
+ * the whole folder instead.
+ */
+export const RESUME_DRIVE_FOLDER_URL =
+    'https://drive.google.com/drive/folders/1Y-kttLqnemV5qcnwQhQ7_3_1D2Jas1Yw?usp=sharing';
+
+export const RESUME_DRIVE_FOLDER_ID = '1Y-kttLqnemV5qcnwQhQ7_3_1D2Jas1Yw';
+
 // --- DATA STRUCTURES ---
 
 export const SKILLS_DATA: Record<string, Skill[]> = {

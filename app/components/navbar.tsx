@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Icon } from './utils';
+import { ThemeToggle } from './themeToggle';
 
 export const Navbar: React.FC = () => {
     const links = ['skills', 'experience', 'projects', 'achievements', 'contact'];
@@ -25,6 +26,7 @@ export const Navbar: React.FC = () => {
                         ))}
                     </nav>
                     <div className="flex items-center gap-2">
+                        <ThemeToggle />
                         <a
                             href="#contact"
                             className="hidden sm:inline-flex items-center h-8 px-4 rounded-lg border border-heat-400/40 bg-heat-400/10 text-heat-300 text-sm font-medium hover:bg-heat-400/20 transition duration-200"

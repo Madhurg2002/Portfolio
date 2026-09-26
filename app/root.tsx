@@ -28,6 +28,25 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+/**
+ * Applies the persisted (or system) theme before first paint so there is no
+ * flash of the wrong theme. Keep in sync with app/components/hooks.tsx.
+ */
+const themeInitScript = `
+(function () {
+  try {
+    var stored = localStorage.getItem('theme');
+    var theme = stored === 'light' || stored === 'dark'
+      ? stored
+      : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.classList.remove('dark', 'light');
+    document.documentElement.classList.add(theme);
+  } catch (e) {
+    document.documentElement.classList.add('dark');
+  }
+})();
+`;
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
@@ -40,6 +59,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         />
         <Meta />
         <Links />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
         <script src="https://unpkg.com/lucide@0.462.0/dist/umd/lucide.min.js"></script>

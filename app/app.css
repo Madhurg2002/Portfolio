@@ -6,7 +6,7 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
     monospace;
 
-  /* Carbon — near-black layered surfaces */
+  /* Carbon — neutral surfaces (semantic: dark values by default, flipped in light mode) */
   --color-carbon-950: #09090b;
   --color-carbon-900: #101013;
   --color-carbon-850: #141418;
@@ -32,9 +32,39 @@
   --color-heat-600: #d97706;
 }
 
+/* ---------- light mode token flip ----------
+   Utilities compile to var() references, so overriding the same custom
+   properties under html.light re-themes every surface without touching JSX. */
+html.light {
+  --color-carbon-950: #f5f6f8;
+  --color-carbon-900: #ffffff;
+  --color-carbon-850: #ffffff;
+  --color-carbon-800: #eef0f3;
+  --color-carbon-700: #dcdfe4;
+  --color-carbon-600: #c6cad1;
+  --color-carbon-500: #6f7680;
+  --color-carbon-400: #5b616b;
+  --color-carbon-300: #3f444d;
+  --color-carbon-200: #2b2f36;
+  --color-carbon-100: #17191e;
+
+  /* deepen accents for contrast on white */
+  --color-phosphor-300: #047857;
+  --color-phosphor-400: #059669;
+  --color-heat-300: #b45309;
+  --color-heat-400: #d97706;
+}
+
 html {
   scroll-behavior: smooth;
+}
+
+html.dark {
   color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
 }
 
 body {
@@ -47,7 +77,7 @@ body {
 
 ::selection {
   background: rgba(245, 158, 11, 0.28);
-  color: #fff;
+  color: inherit;
 }
 
 ::-webkit-scrollbar {
@@ -87,6 +117,12 @@ body {
   background-size: 44px 44px;
 }
 
+html.light .bg-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
 .bg-grid-fade {
   -webkit-mask-image: radial-gradient(
     ellipse 80% 70% at 50% 0%,
@@ -108,6 +144,22 @@ body {
     border-color 0.3s ease-out;
   transform-style: preserve-3d;
   will-change: transform;
+}
+
+/* ---------- skill SVG handling per theme ----------
+   Dark-on-dark brand SVGs (JavaScript, Next.js, Linux, Node gray) get a
+   soft white halo on dark backgrounds; on light they sit on white tiles
+   and need no help. Letter-mark tiles (TS, Redux, deck.gl, …) read on both. */
+.skill-icon {
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+html.dark .skill-icon {
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.22)) brightness(1.12);
+}
+
+html.light .skill-icon {
+  filter: saturate(1.05);
 }
 
 /* ---------- hero entrance ---------- */

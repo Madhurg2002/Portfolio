@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Icon } from './utils';
 import { GITHUB_PROFILE_URL } from '../data';
+import { useLatestResume } from './resume';
 
 export const Hero: React.FC = () => {
     const roles: string[] = ['Full Stack Developer', 'Geospatial Engineer', 'Backend Automation Specialist', 'UI/UX Enthusiast'];
+    const resume = useLatestResume();
     const [displayedText, setDisplayedText] = useState<string>('');
     const [roleIndex, setRoleIndex] = useState<number>(0);
     const [charIndex, setCharIndex] = useState<number>(0);
@@ -67,6 +69,16 @@ export const Hero: React.FC = () => {
                             className="inline-flex items-center px-6 py-3 rounded-xl border border-carbon-600 text-carbon-200 font-medium hover:border-heat-400/60 hover:text-white transition duration-200 hover:-translate-y-0.5"
                         >
                             Get in touch
+                        </a>
+                        <a
+                            href={resume.url ?? '#'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={resume.name ? `Latest resume: ${resume.name}` : 'Resume folder on Google Drive'}
+                            className="inline-flex items-center px-6 py-3 rounded-xl border border-carbon-600 text-carbon-200 font-medium hover:border-heat-400/60 hover:text-white transition duration-200 hover:-translate-y-0.5"
+                        >
+                            <Icon name="file-text" className="w-4 h-4 mr-2" />
+                            Resume
                         </a>
                         <a
                             href={GITHUB_PROFILE_URL}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Section, SectionHeader, Icon } from './utils';
-import { GITHUB_PROFILE_URL } from '../data';
+import { GITHUB_PROFILE_URL, RESUME_DRIVE_FOLDER_URL } from '../data';
+import { useLatestResume } from './resume';
 
 const ACHIEVEMENTS = [
     {
@@ -91,7 +92,10 @@ const CONTACTS = [
     },
 ];
 
-export const Contact: React.FC = () => (
+export const Contact: React.FC = () => {
+    const resume = useLatestResume();
+
+    return (
     <Section id="contact" className="text-center">
         <div className="max-w-2xl mx-auto">
             <p className="kicker text-xs text-heat-400 mb-3">/05 — ping me</p>
@@ -109,6 +113,21 @@ export const Contact: React.FC = () => (
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+            <a
+                href={resume.url ?? RESUME_DRIVE_FOLDER_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={resume.name ? `Latest resume: ${resume.name}` : 'Resume folder on Google Drive'}
+                className="group flex flex-col items-center p-6 rounded-2xl border border-carbon-700 bg-carbon-850 transition duration-300 hover:border-heat-400/50 hover:-translate-y-1 hover:shadow-xl hover:shadow-heat-500/10 sm:col-span-2 lg:col-span-4"
+            >
+                <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-carbon-700 bg-carbon-900 text-heat-400 group-hover:text-heat-300 group-hover:border-heat-400/40 mb-4 transition duration-300">
+                    <Icon name="file-text" className="w-5 h-5" />
+                </span>
+                <span className="text-white font-semibold mb-1">Resume</span>
+                <span className="text-carbon-400 text-sm">
+                    {resume.name ? `Latest: ${resume.name}` : 'View the latest resume on Google Drive'}
+                </span>
+            </a>
             {CONTACTS.map((c) => (
                 <a
                     key={c.label}
@@ -130,4 +149,5 @@ export const Contact: React.FC = () => (
             Prefer async? Email works best — I usually reply within a day.
         </p>
     </Section>
-);
+    );
+};
