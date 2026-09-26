@@ -7,22 +7,22 @@ const ACHIEVEMENTS = [
     {
         icon: 'file-text',
         title: 'ACM Publication (2024)',
-        text: 'Lead author of "Map Yog — Intelligent Spatiotemporal Data Explorer" on high-scale spatial data visualization.',
+        text: 'Lead author of "Map Yog — Intelligent Spatiotemporal Data Explorer" on large-scale spatial data visualization.',
     },
     {
         icon: 'braces',
         title: 'Problem Solving',
-        text: 'Solved 1000+ algorithmic problems across LeetCode and Codeforces, focusing on Data Structures, Dynamic Programming, and Graph Algorithms.',
+        text: 'Solved 1,000+ algorithmic problems across LeetCode and Codeforces, focusing on data structures, dynamic programming, and graph algorithms.',
     },
     {
         icon: 'graduation-cap',
         title: 'GATE CS 2024',
-        text: 'Qualified the GATE Computer Science exam, demonstrating strong foundations in core CS subjects.',
+        text: 'Qualified the GATE Computer Science exam, covering core CS subjects.',
     },
     {
         icon: 'trophy',
         title: 'Hackathons',
-        text: 'Developed a geolocation-verified facial attendance prototype during Codeshastra 8.0 with real-time API verification.',
+        text: 'Developed a geolocation-verified facial attendance prototype during Codeshastra 8.0.',
     },
 ];
 

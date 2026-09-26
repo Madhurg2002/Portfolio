@@ -119,7 +119,7 @@ export const Hero: React.FC = () => {
                         {[
                             ['25+', 'public repos'],
                             ['2 yrs', 'shipping full-stack'],
-                            ['1k+', 'DSA problems'],
+                            ['1,000+', 'DSA problems'],
                         ].map(([value, label]) => (
                             <div key={label}>
                                 <p className="text-2xl font-bold text-carbon-100 font-mono">{value}</p>
