@@ -4,16 +4,18 @@ import { useTheme } from './hooks';
 
 export const ThemeToggle: React.FC<{ className?: string }> = ({ className = '' }) => {
     const { theme, toggle } = useTheme();
+    const nextLabel = theme === 'dark' ? 'Light' : 'Dark';
 
     return (
         <button
             type="button"
             onClick={toggle}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className={`inline-flex items-center justify-center w-9 h-9 rounded-lg border border-carbon-700 bg-carbon-850 text-carbon-300 hover:text-white hover:border-heat-400/50 transition ${className}`}
+            aria-label={`Switch to ${nextLabel.toLowerCase()} mode (currently ${theme})`}
+            title={`Switch to ${nextLabel.toLowerCase()} mode`}
+            className={`inline-flex items-center gap-2 h-9 pl-2.5 pr-3 rounded-lg border border-carbon-700 bg-carbon-850 text-carbon-300 hover:text-white hover:border-heat-400/50 transition ${className}`}
         >
-            <Icon name={theme === 'dark' ? 'sun' : 'moon'} className="w-4 h-4" />
+            <Icon name={theme === 'dark' ? 'sun' : 'moon'} className="w-4 h-4 text-heat-400" />
+            <span className="text-xs font-medium">{nextLabel}</span>
         </button>
     );
 };
