@@ -1,5 +1,5 @@
-import React from 'react';
-import { Section, SectionHeader, Icon, useLucideIcons } from './utils';
+import type React from 'react';
+import { Section, SectionHeader, Icon } from './utils';
 import { GITHUB_PROFILE_URL } from '../data';
 import { useLatestResume } from './resume';
 
@@ -27,16 +27,15 @@ const ACHIEVEMENTS = [
 ];
 
 export const AchievementsAndEducation: React.FC = () => {
-    useLucideIcons();
     return (
     <Section id="achievements">
         <SectionHeader index="/04 — wins" title="Achievements & Education" />
         <div className="grid sm:grid-cols-2 gap-5">
-            <div className="sm:col-span-2 flex items-start gap-4 p-6 rounded-2xl border border-heat-400/30 bg-gradient-to-r from-heat-500/5 to-transparent">
+            <div className="sm:col-span-2 flex items-start gap-4 p-5 sm:p-6 rounded-2xl border border-heat-400/30 bg-gradient-to-r from-heat-500/5 to-transparent">
                 <div className="flex items-center justify-center w-11 h-11 rounded-xl border border-heat-400/40 bg-carbon-900 text-heat-400 flex-shrink-0">
                     <Icon name="graduation-cap" className="w-5 h-5" />
                 </div>
-                <div>
+                <div className="min-w-0">
                     <h3 className="text-base font-semibold text-carbon-100 mb-1">
                         Indian Institute of Information Technology (IIIT), Kota
                     </h3>
@@ -46,12 +45,12 @@ export const AchievementsAndEducation: React.FC = () => {
             {ACHIEVEMENTS.map((a, i) => (
                 <div
                     key={i}
-                    className="flex items-start gap-4 p-6 rounded-2xl border border-carbon-700 bg-carbon-850 hover:border-carbon-600 hover:-translate-y-0.5 transition duration-300"
+                    className="flex items-start gap-4 p-5 sm:p-6 rounded-2xl border border-carbon-700 bg-carbon-850 hover:border-carbon-600 hover:-translate-y-0.5 transition duration-300"
                 >
                     <div className="flex items-center justify-center w-11 h-11 rounded-xl border border-carbon-700 bg-carbon-900 text-phosphor-400 flex-shrink-0">
                         <Icon name={a.icon} className="w-5 h-5" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                         <h3 className="text-base font-semibold text-carbon-100 mb-1.5">{a.title}</h3>
                         <p className="text-sm text-carbon-300 leading-relaxed">{a.text}</p>
                     </div>
@@ -97,10 +96,12 @@ const CONTACTS = [
 
 export const Contact: React.FC = () => {
     const resume = useLatestResume();
-    useLucideIcons([resume.url]);
 
     return (
-    <Section id="contact" className="text-center">
+    // Last section on the page, so it reclaims the bottom padding that every
+    // other section hands off to its successor - otherwise this + the footer's
+    // own py stacks into a ~130px void under the final card.
+    <Section id="contact" className="text-center pb-8 sm:pb-10">
         <div className="max-w-2xl mx-auto">
             <p className="kicker text-xs text-heat-400 mb-3">/05 — ping me</p>
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-carbon-100 mb-5">
@@ -122,7 +123,7 @@ export const Contact: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 title={resume.name ? `Latest resume: ${resume.name}` : 'Latest resume from Google Drive'}
-                className="group flex flex-col items-center p-6 rounded-2xl border border-carbon-700 bg-carbon-850 transition duration-300 hover:border-heat-400/50 hover:-translate-y-1 hover:shadow-xl hover:shadow-heat-500/10 sm:col-span-2 lg:col-span-4"
+                className="group flex flex-col items-center min-w-0 p-5 sm:p-6 rounded-2xl border border-carbon-700 bg-carbon-850 transition duration-300 hover:border-heat-400/50 hover:-translate-y-1 hover:shadow-xl hover:shadow-heat-500/10 sm:col-span-2 lg:col-span-4"
             >
                 <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-carbon-700 bg-carbon-900 text-heat-400 group-hover:text-heat-300 group-hover:border-heat-400/40 mb-4 transition duration-300">
                     <Icon name="file-text" className="w-5 h-5" />
@@ -138,18 +139,18 @@ export const Contact: React.FC = () => {
                     href={c.href}
                     target={c.href.startsWith('mailto:') ? undefined : '_blank'}
                     rel="noopener noreferrer"
-                    className="group flex flex-col items-center p-6 rounded-2xl border border-carbon-700 bg-carbon-850 transition duration-300 hover:border-heat-400/50 hover:-translate-y-1 hover:shadow-xl hover:shadow-heat-500/10"
+                    className="group flex flex-col items-center min-w-0 p-5 sm:p-6 rounded-2xl border border-carbon-700 bg-carbon-850 transition duration-300 hover:border-heat-400/50 hover:-translate-y-1 hover:shadow-xl hover:shadow-heat-500/10"
                 >
                     <span className="flex items-center justify-center w-12 h-12 rounded-xl border border-carbon-700 bg-carbon-900 text-heat-400 group-hover:text-heat-300 group-hover:border-heat-400/40 mb-4 transition duration-300">
                         <Icon name={c.icon} className="w-5 h-5" />
                     </span>
                     <span className="text-carbon-100 font-semibold mb-1">{c.label}</span>
-                    <span className="text-carbon-400 text-sm break-all">{c.value}</span>
+                    <span className="text-carbon-400 text-sm break-all max-w-full">{c.value}</span>
                 </a>
             ))}
         </div>
 
-        <p className="mt-10 text-sm text-carbon-500">
+        <p className="mt-8 text-sm text-carbon-400">
             Prefer async? Email works best — I usually reply within a day.
         </p>
     </Section>

@@ -18,24 +18,40 @@ export const RESUME_URL = '/resume';
 /**
  * Cosmetic lookup of the latest resume's file name for the button subtitle.
  * Talks to our own /resume route in JSON mode, so no cross-origin requests.
+ *
+ * Both the hero CTA and the contact card show this, so the in-flight promise is
+ * memoised at module scope - otherwise every page load fired two identical
+ * requests and ran the server loader twice for the same answer.
  */
+let inflight: Promise<string | null> | null = null;
+
+function fetchLatestName(): Promise<string | null> {
+    if (!inflight) {
+        inflight = fetch(`${RESUME_URL}?json=1`)
+            .then(res => {
+                if (!res.ok) throw new Error(`resume ${res.status}`);
+                return res.json() as Promise<{ name?: string | null }>;
+            })
+            .then(data => data.name ?? null)
+            .catch(() => {
+                /* subtitle is optional; the button still works. Drop the
+                   memo so a later mount can retry rather than pinning a failure. */
+                inflight = null;
+                return null;
+            });
+    }
+    return inflight;
+}
+
 export function useLatestResume(): ResumeLink {
     const [name, setName] = useState<string | null>(null);
 
     useEffect(() => {
         let cancelled = false;
 
-        fetch(`${RESUME_URL}?json=1`)
-            .then(res => {
-                if (!res.ok) throw new Error(`resume ${res.status}`);
-                return res.json() as Promise<{ name?: string | null }>;
-            })
-            .then(data => {
-                if (!cancelled && data.name) setName(data.name);
-            })
-            .catch(() => {
-                /* subtitle is optional; the button still works */
-            });
+        fetchLatestName().then(result => {
+            if (!cancelled) setName(result);
+        });
 
         return () => {
             cancelled = true;

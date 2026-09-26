@@ -2,7 +2,7 @@ import { redirect } from "react-router";
 
 const FOLDER_ID = "1Y-kttLqnemV5qcnwQhQ7_3_1D2Jas1Yw";
 
-interface Latest {
+export interface Latest {
     id: string;
     name: string;
 }
@@ -14,13 +14,22 @@ const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "
  * (US locale): "M/D/YY" for older files, "MMM D" for files modified this
  * calendar year, and a bare time like "2:18 am" for files modified today.
  * Returns a timestamp, or null when nothing sensible can be extracted.
+ *
+ * Exported for tests: this has broken twice in production (Drive dropped the
+ * year for current-year files, then started emitting a bare time for files
+ * touched today), so the three shapes are pinned down in resume.test.ts.
  */
-function parseDriveDate(raw: string): number | null {
+export function parseDriveDate(raw: string): number | null {
     const s = raw.trim();
 
     const mdy = /^(\d{1,2})\/(\d{1,2})\/(\d{2})$/.exec(s);
     if (mdy) {
-        return new Date(2000 + Number(mdy[3]), Number(mdy[1]) - 1, Number(mdy[2])).getTime();
+        // Two-digit years need a pivot: "25" is 2025, but "99" is 1999, not
+        // 2099. Without this an old file sorts as the newest resume forever.
+        const yy = Number(mdy[3]);
+        const currentYY = new Date().getFullYear() % 100;
+        const year = yy <= currentYY ? 2000 + yy : 1900 + yy;
+        return new Date(year, Number(mdy[1]) - 1, Number(mdy[2])).getTime();
     }
 
     const monDay = /^([A-Za-z]{3})\s+(\d{1,2})$/.exec(s);
@@ -44,17 +53,19 @@ function parseDriveDate(raw: string): number | null {
 /**
  * Parse the newest entry from Drive's public "embedded folder view" HTML.
  */
-function parseLatest(html: string): Latest | null {
+export function parseLatest(html: string): Latest | null {
     const re =
         /id="entry-([\w-]+)"[\s\S]{0,600}?class="flip-entry-title">([^<]+)<[\s\S]{0,600}?flip-entry-last-modified"><div>([^<]+)<\/div>/g;
     let match: RegExpExecArray | null;
-    let best: (Latest & { modified: number }) | null = null;
+    let best: Latest | null = null;
+    let bestModified = Number.NEGATIVE_INFINITY;
 
     while ((match = re.exec(html)) !== null) {
         const modified = parseDriveDate(match[3]);
         if (modified === null) continue;
-        if (!best || modified > best.modified) {
-            best = { id: match[1], name: match[2].trim(), modified };
+        if (modified > bestModified) {
+            bestModified = modified;
+            best = { id: match[1], name: match[2].trim() };
         }
     }
     return best;
