@@ -1,66 +1,50 @@
 import React from 'react';
 
-// 1. Define types for reusable components
-
 interface IconProps {
     name: string;
     className?: string;
     style?: React.CSSProperties;
 }
 
-interface SectionWrapperProps {
-    id: string;
+interface SectionHeaderProps {
+    index: string;
     title: string;
-    children: React.ReactNode;
-    className?: string;
 }
 
-// 2. Implement Components using TypeScript interfaces
+// Lucide icon renderer (icons come from the global lucide UMD bundle)
+export const Icon: React.FC<IconProps> = ({ name, className = '', style = {} }) => (
+    <span data-lucide={name} className={className} style={style}></span>
+);
 
-// Helper component to render Lucide Icons
-export const Icon: React.FC<IconProps> = ({ name, className = '', style = {} }) => {
-    return <span data-lucide={name} className={className} style={style}></span>;
-};
-
-// Custom React Logo with spinning animation
-export const ReactLogo: React.FC = () => (
-    <div className="react-logo">
-        <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            viewBox="-11.5 -10.23174 23 20.46348" 
-            width="40" height="40"
-            className="text-4xl mb-2 block mx-auto react-spin-target" // Target for CSS spin
-            style={{ color: '#61DAFB' }} 
-        >
-            <circle cx="0" cy="0" r="2.05" fill="#61DAFB"/>
-            <g stroke="#61DAFB" strokeWidth="1" fill="none">
-                {/* Ellipses fill is now set to the body background color in global styles */}
-                <ellipse rx="11" ry="4.2" />
-                <ellipse rx="11" ry="4.2" transform="rotate(60)" />
-                <ellipse rx="11" ry="4.2" transform="rotate(120)" />
-            </g>
-        </svg>
+// Numbered section header used across the page
+export const SectionHeader: React.FC<SectionHeaderProps> = ({ index, title }) => (
+    <div className="mb-12 flex items-end justify-between gap-4">
+        <div>
+            <p className="kicker text-xs text-heat-400 mb-3">{index}</p>
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white">{title}</h2>
+        </div>
+        <div className="hidden sm:block h-px flex-1 max-w-xs bg-gradient-to-r from-carbon-600 to-transparent mb-2" />
     </div>
 );
 
-// Generic wrapper for all sections
-export const SectionWrapper: React.FC<SectionWrapperProps> = ({ id, title, children, className = '' }) => (
-    <section id={id} className={`py-16 border-t border-gray-800 ${className}`}>
-        <h2 className="text-4xl font-bold text-center mb-12">
-            {title.split(' ').map((word, index) => (
-                <span key={index} className={index === 0 || index === 2 ? 'text-white' : 'gradient-text'}>
-                    {word}{' '}
-                </span>
-            ))}
-        </h2>
+// Section shell
+export const Section: React.FC<{ id: string; children: React.ReactNode; className?: string }> = ({
+    id,
+    children,
+    className = '',
+}) => (
+    <section id={id} className={`py-20 sm:py-24 scroll-mt-20 ${className}`}>
         {children}
     </section>
 );
 
 export const Footer: React.FC = () => (
-    <footer className="bg-gray-900 border-t border-gray-800 py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
-            <p>&copy; {new Date().getFullYear()} Madhur Gupta. Built with React, Tailwind CSS & lots of ☕.</p>
+    <footer className="border-t border-carbon-800 py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-carbon-400">
+            <p className="font-mono text-xs">
+                <span className="text-phosphor-400">$</span> whoami <span className="text-carbon-500">→</span> madhur-gupta
+            </p>
+            <p>&copy; {new Date().getFullYear()} Madhur Gupta · Built with React &amp; Tailwind</p>
         </div>
     </footer>
 );

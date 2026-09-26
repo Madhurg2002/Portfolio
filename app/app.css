@@ -1,15 +1,159 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+
+  /* Carbon — near-black layered surfaces */
+  --color-carbon-950: #09090b;
+  --color-carbon-900: #101013;
+  --color-carbon-850: #141418;
+  --color-carbon-800: #1b1b20;
+  --color-carbon-700: #26262c;
+  --color-carbon-600: #36363e;
+  --color-carbon-500: #52525c;
+  --color-carbon-400: #8b8b95;
+  --color-carbon-300: #b6b6bf;
+  --color-carbon-200: #d6d6dc;
+  --color-carbon-100: #ededf1;
+
+  /* Phosphor — terminal green, secondary accent */
+  --color-phosphor-300: #6ee7b7;
+  --color-phosphor-400: #34d399;
+  --color-phosphor-500: #10b981;
+  --color-phosphor-600: #059669;
+
+  /* Heat — molten amber, primary accent */
+  --color-heat-300: #fcd34d;
+  --color-heat-400: #fbbf24;
+  --color-heat-500: #f59e0b;
+  --color-heat-600: #d97706;
 }
 
-html,
-body {
-  @apply bg-white dark:bg-gray-950;
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+body {
+  background-color: var(--color-carbon-950);
+  color: var(--color-carbon-100);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(245, 158, 11, 0.28);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-carbon-950);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-carbon-700);
+  border-radius: 8px;
+  border: 2px solid var(--color-carbon-950);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-carbon-600);
+}
+
+/* ---------- shared utilities ---------- */
+
+.text-gradient {
+  background: linear-gradient(100deg, #fbbf24 0%, #34d399 55%, #38bdf8 115%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.bg-grid-fade {
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 0%,
+    #000 45%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 0%,
+    #000 45%,
+    transparent 100%
+  );
+}
+
+.tilt-card {
+  border: 1px solid transparent;
+  transition:
+    transform 0.15s ease-out,
+    box-shadow 0.3s ease-out,
+    border-color 0.3s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ---------- hero entrance ---------- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
   }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+.rise-1 {
+  animation-delay: 0.08s;
+}
+.rise-2 {
+  animation-delay: 0.16s;
+}
+.rise-3 {
+  animation-delay: 0.26s;
+}
+.rise-4 {
+  animation-delay: 0.38s;
+}
+
+/* ---------- react logo (skills) ---------- */
+
+@keyframes react-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.react-logo svg ellipse {
+  fill: var(--color-carbon-850) !important;
+}
+
+.react-logo-wrapper:hover .react-spin-target {
+  animation: react-spin 9s linear infinite;
 }

@@ -1,53 +1,71 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Icon } from './utils';
-import { GITHUB_PROFILE_URL } from '../data';
 
 export const Navbar: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    // Ensure icons in the mobile menu and button appear
-    useEffect(() => {
-        if (typeof (window as any).lucide !== 'undefined') {
-            (window as any).lucide.createIcons();
-        }
-    }, [isOpen]);
+    const links = ['skills', 'experience', 'projects', 'achievements', 'contact'];
+    const [open, setOpen] = useState(false);
 
     return (
-        <nav className="sticky top-0 z-50 bg-gray-900/90 backdrop-blur-md shadow-lg">
+        <header className="fixed top-0 inset-x-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-16">
-                    <div className="flex-shrink-0">
-                        <a href="#home" className="text-xl font-bold gradient-text">Madhur.dev</a>
-                    </div>
-                    <div className="hidden md:flex items-center space-x-4">
-                        {['skills', 'experience', 'projects', 'achievements', 'contact'].map(id => (
-                            <a key={id} href={`#${id}`} className="text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium transition duration-300 capitalize">
+                <div className="mt-4 flex items-center justify-between h-14 px-5 rounded-2xl border border-carbon-700/70 bg-carbon-900/70 backdrop-blur-xl shadow-lg shadow-black/30">
+                    <a href="#home" className="font-mono text-sm font-semibold tracking-tight text-white">
+                        <span className="text-heat-400">~</span>/madhur<span className="text-phosphor-400">.dev</span>
+                    </a>
+                    <nav className="hidden md:flex items-center gap-1">
+                        {links.map((id, i) => (
+                            <a
+                                key={id}
+                                href={`#${id}`}
+                                className="px-3 py-1.5 rounded-lg text-sm text-carbon-300 hover:text-white hover:bg-carbon-800 transition duration-200"
+                            >
+                                <span className="font-mono text-xs text-heat-400/80 mr-1.5">0{i + 1}.</span>
                                 {id}
                             </a>
                         ))}
-                        <a href={GITHUB_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium transition duration-300">
-                            <Icon name="github" className="w-5 h-5" />
-                            <span className="sr-only">GitHub Profile</span>
+                    </nav>
+                    <div className="flex items-center gap-2">
+                        <a
+                            href="#contact"
+                            className="hidden sm:inline-flex items-center h-8 px-4 rounded-lg border border-heat-400/40 bg-heat-400/10 text-heat-300 text-sm font-medium hover:bg-heat-400/20 transition duration-200"
+                        >
+                            Hire me
+                        </a>
+                        <button
+                            type="button"
+                            onClick={() => setOpen(!open)}
+                            className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg text-carbon-300 hover:text-white hover:bg-carbon-800 transition"
+                            aria-label="Toggle menu"
+                        >
+                            <Icon name={open ? 'x' : 'menu'} className="w-5 h-5" />
+                        </button>
+                    </div>
+                </div>
+
+                {open && (
+                    <div className="md:hidden mt-2 rounded-2xl border border-carbon-700/70 bg-carbon-900/95 backdrop-blur-xl shadow-lg shadow-black/30 overflow-hidden">
+                        {links.map((id, i) => (
+                            <a
+                                key={id}
+                                href={`#${id}`}
+                                onClick={() => setOpen(false)}
+                                className="flex items-center px-5 py-3 text-sm text-carbon-300 hover:text-white hover:bg-carbon-800 transition border-b border-carbon-800 last:border-b-0"
+                            >
+                                <span className="font-mono text-xs text-heat-400/80 mr-3">0{i + 1}.</span>
+                                {id}
+                            </a>
+                        ))}
+                        <a
+                            href="#contact"
+                            onClick={() => setOpen(false)}
+                            className="sm:hidden flex items-center px-5 py-3 text-sm font-medium text-heat-300 hover:bg-carbon-800 transition border-t border-carbon-800"
+                        >
+                            <span className="font-mono text-xs text-heat-400/80 mr-3">→</span>
+                            Hire me
                         </a>
                     </div>
-                    <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-gray-300 hover:text-green-400 focus:outline-none">
-                        <Icon name={isOpen ? 'x' : 'menu'} className="w-6 h-6" />
-                    </button>
-                </div>
+                )}
             </div>
-            {/* Mobile Menu */}
-            <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`}>
-                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-800">
-                    {['skills', 'experience', 'projects', 'achievements', 'contact'].map(id => (
-                        <a key={id} href={`#${id}`} onClick={() => setIsOpen(false)} className="block text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium capitalize">
-                            {id}
-                        </a>
-                    ))}
-                    <a href={GITHUB_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">
-                        <Icon name="github" className="w-5 h-5 mr-2" /> GitHub Profile
-                    </a>
-                </div>
-            </div>
-        </nav>
+        </header>
     );
 };

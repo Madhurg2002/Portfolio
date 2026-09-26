@@ -1,35 +1,41 @@
 import React from 'react';
-import { useTiltEffect } from './hooks';
 import { EXPERIENCE_DATA } from '../data';
-import { SectionWrapper } from './utils';
+import { Section, SectionHeader } from './utils';
 
 export const Experience: React.FC = () => {
-    const cardRefs = useTiltEffect();
-
     return (
-        <SectionWrapper id="experience" title="Professional Experience">
-            <div className="space-y-10">
-                {EXPERIENCE_DATA.map((job, index) => (
-                    <div
-                        key={index}
-                        className="bg-gray-800 p-6 sm:p-8 rounded-xl tilt-card shadow-lg hover:shadow-green-900/50 transition duration-300"
-                        ref={el => { cardRefs.current[index] = el; }}
-                    >
-                        <div className="flex flex-col md:flex-row justify-between items-start mb-4">
-                            <div>
-                                <h3 className="text-2xl font-semibold text-white">{job.title}</h3>
-                                <p className="text-green-400 text-lg">{job.company}</p>
+        <Section id="experience">
+            <SectionHeader index="/02 — career" title="Where I've Worked" />
+            <div className="relative ml-2 md:ml-4">
+                {/* rail */}
+                <div className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-heat-400/60 via-carbon-700 to-transparent" />
+
+                <div className="space-y-12">
+                    {EXPERIENCE_DATA.map((job, index) => (
+                        <div key={index} className="relative pl-8 md:pl-12">
+                            {/* node */}
+                            <span className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full border-2 border-heat-400 bg-carbon-950" />
+
+                            <div className="group p-6 sm:p-7 rounded-2xl border border-carbon-700 bg-carbon-850 hover:border-carbon-600 transition duration-300">
+                                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-4">
+                                    <h3 className="text-xl font-semibold text-white">
+                                        {job.title} <span className="text-heat-400">@ {job.company}</span>
+                                    </h3>
+                                    <p className="font-mono text-xs text-carbon-400">{job.duration}</p>
+                                </div>
+                                <ul className="space-y-2.5">
+                                    {job.bullets.map((bullet, i) => (
+                                        <li key={i} className="flex items-start text-sm text-carbon-300 leading-relaxed">
+                                            <span className="text-phosphor-400 mr-3 mt-0.5 font-mono flex-shrink-0">▹</span>
+                                            <span dangerouslySetInnerHTML={{ __html: bullet }} />
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
-                            <p className="text-sm text-gray-400 md:text-right pt-2 md:pt-0">{job.duration}</p>
                         </div>
-                        <ul className="space-y-3 text-gray-300 list-disc list-inside ml-4 border-l-4 border-green-400 pl-4">
-                            {job.bullets.map((bullet, i) => (
-                                <li key={i} dangerouslySetInnerHTML={{ __html: bullet }} />
-                            ))}
-                        </ul>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </SectionWrapper>
+        </Section>
     );
 };

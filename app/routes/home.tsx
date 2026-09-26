@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
-import { styles } from '../globalStyles';
+import React from 'react';
 
-// Import all distinct components (using .tsx or .ts extensions)
 import { Navbar } from '../components/navbar';
 import { Hero } from '../components/hero';
 import { Skills } from '../components/skills';
@@ -10,48 +8,27 @@ import { Projects } from '../components/projects';
 import { AchievementsAndEducation, Contact } from '../components/sections';
 import { Footer } from '../components/utils';
 
-// --- MAIN APPLICATION COMPONENT ---
-
 const App: React.FC = () => {
-    // Inject global styles including keyframes
-    useEffect(() => {
-        const styleTag = document.createElement('style');
-        styleTag.innerHTML = styles;
-        document.head.appendChild(styleTag);
-        
-        // Initial call to create icons
-        if (typeof (window as any).lucide !== 'undefined') {
-            (window as any).lucide.createIcons();
-        }
-
-        return () => {
-             document.head.removeChild(styleTag);
-        }
-    }, []);
-
-    // FIX: Re-initialize Lucide Icons after component renders or state changes
-    useEffect(() => {
-        if (typeof (window as any).lucide !== 'undefined') {
-            (window as any).lucide.createIcons();
-        }
-    });
-
     return (
-        <React.StrictMode>
-            {/* FIX: Set a default background color on the outer div */}
-            <div className="bg-gray-900 min-h-screen"> 
-                <Navbar />
-                <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                    <Hero />
-                    <Skills />
-                    <Experience />
-                    <Projects />
-                    <AchievementsAndEducation />
-                    <Contact />
-                </main>
-                <Footer />
+        <div className="relative min-h-screen bg-carbon-950">
+            {/* ambient background: grid + glows */}
+            <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
+                <div className="absolute inset-0 bg-grid bg-grid-fade" />
+                <div className="absolute top-1/3 -right-48 w-[36rem] h-[36rem] bg-phosphor-500/5 blur-[140px] rounded-full" />
+                <div className="absolute bottom-0 -left-48 w-[32rem] h-[32rem] bg-heat-500/5 blur-[140px] rounded-full" />
             </div>
-        </React.StrictMode>
+
+            <Navbar />
+            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <Hero />
+                <Skills />
+                <Experience />
+                <Projects />
+                <AchievementsAndEducation />
+                <Contact />
+            </main>
+            <Footer />
+        </div>
     );
 };
 

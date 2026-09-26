@@ -13,6 +13,14 @@ import gcpIcon from './skillsIcons/gcp.svg';
 import DockerIcon from './skillsIcons/docker.svg';
 import GitIcon from './skillsIcons/git.svg';
 import LinuxIcon from './skillsIcons/linux.svg';
+import TypeScriptIcon from './skillsIcons/typescript.svg';
+import ReduxIcon from './skillsIcons/redux.svg';
+import DeckIcon from './skillsIcons/deckgl.svg';
+import KeplerIcon from './skillsIcons/keplergl.svg';
+import SocketIcon from './skillsIcons/socketio.svg';
+import PostmanIcon from './skillsIcons/postman.svg';
+import VSCodeIcon from './skillsIcons/vscode.svg';
+import ClaudeIcon from './skillsIcons/claude.svg';
 // --- INTERFACES ---
 
 export interface Skill {
@@ -46,26 +54,33 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
     Frontend: [
         { name: 'React.js', icon: ReactIcon, color: '#61DAFB', link: 'https://react.dev/learn' },
         { name: 'Next.js', icon: NextIcon, color: '#6EE7B7', link: 'https://nextjs.org/docs' },
+        { name: 'TypeScript', icon: TypeScriptIcon, color: '#3178C6', link: 'https://www.typescriptlang.org/docs/' },
+        { name: 'Redux', icon: ReduxIcon, color: '#764ABC', link: 'https://redux.js.org/' },
+        { name: 'deck.gl', icon: DeckIcon, color: '#FF6FB4', link: 'https://deck.gl/docs' },
+        { name: 'Kepler.gl', icon: KeplerIcon, color: '#EF5350', link: 'https://kepler.gl/' },
         { name: 'Tailwind CSS', icon: TailwindIcon, color: '#06B6D4', link: 'https://tailwindcss.com/docs' },
     ],
-    'Backend / Runtime': [
+    'Backend & Cloud': [
         { name: 'Node.js', icon: NodeIcon, color: '#339933', link: 'https://nodejs.org/en/docs' },
         { name: 'Express', icon: ExpressIcon, color: '#6B7280', link: 'https://expressjs.com/' },
-    ],
-    'Database ': [
-        { name: 'PostgreSQL', icon: PostgreSQLIcon, color: '#336791', link: 'https://www.postgresql.org/docs/' },
-        { name: 'MongoDB', icon: MongoDBIcon, color: '#47A248', link: 'https://www.mongodb.com/docs/' },
-    ],
-    'Tools / DevOps': [
-        { name: 'Google Cloud (GCP)', icon: gcpIcon, color: '#4285F4', link: 'https://cloud.google.com/docs' },
+        { name: 'PostGIS', icon: PostgreSQLIcon, color: '#336791', link: 'https://postgis.net/documentation/' },
+        { name: 'GCP (Cloud Run)', icon: gcpIcon, color: '#4285F4', link: 'https://cloud.google.com/docs' },
         { name: 'Docker', icon: DockerIcon, color: '#2496ED', link: 'https://docs.docker.com/' },
-        { name: 'Git', icon: GitIcon, color: '#F05032', link: 'https://git-scm.com/doc' },
-        { name: 'Linux', icon: LinuxIcon, color: '#E95420', link: 'https://www.linux.org/docs/tutorials.html' }
+        { name: 'MongoDB', icon: MongoDBIcon, color: '#47A248', link: 'https://www.mongodb.com/docs/' },
+        { name: 'Socket.io', icon: SocketIcon, color: '#FFFFFF', link: 'https://socket.io/docs/v4/' },
     ],
-    "Languages": [
-        { name: 'Python', icon: PythonIcon, color: '#3776AB', link: 'https://docs.python.org/3/' },
+    'Languages': [
         { name: 'JavaScript', icon: JavaScriptIcon, color: '#F7DF1E', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
-        { name: 'C++ ', icon: CPPIcon, color: '#00599C', link: 'https://cplusplus.com/doc/' },
+        { name: 'Python', icon: PythonIcon, color: '#3776AB', link: 'https://docs.python.org/3/' },
+        { name: 'C++', icon: CPPIcon, color: '#00599C', link: 'https://cplusplus.com/doc/' },
+        { name: 'C', icon: CIcon, color: '#5C6BC0', link: 'https://devdocs.io/c/' },
+    ],
+    'Developer Tools': [
+        { name: 'Git', icon: GitIcon, color: '#F05032', link: 'https://git-scm.com/doc' },
+        { name: 'Linux', icon: LinuxIcon, color: '#E95420', link: 'https://www.linux.org/docs/tutorials.html' },
+        { name: 'Postman', icon: PostmanIcon, color: '#FF6C37', link: 'https://learning.postman.com/docs/' },
+        { name: 'VS Code', icon: VSCodeIcon, color: '#007ACC', link: 'https://code.visualstudio.com/docs' },
+        { name: 'Claude & Cursor', icon: ClaudeIcon, color: '#D97757', link: 'https://docs.anthropic.com/' },
     ]
 };
 
@@ -73,42 +88,42 @@ export const EXPERIENCE_DATA: ExperienceEntry[] = [
     {
         title: 'Full Stack Developer',
         company: 'Qen Labs',
-        duration: 'Feb 2024 - Present',
+        duration: 'Feb 2024 — Present · Remote',
         bullets: [
-            'Architected a cloud-native geospatial platform for environmental data visualization, enabling interactive user data creation and real-time monitoring.',
-            'Designed and deployed a 24/7 automated data aggregation pipeline from diverse sources, ensuring complex real-time data integration and reliability.',
-            'Engineered backend GeoJSON vector tile creation and live summarization, establishing scalable geospatial data services.',
-            'Built secure, user-driven APIs to support data interaction and external access, facilitating future extensibility and partner integrations.',
-            'Managed and deployed comprehensive cloud infrastructure on GCP (PostgreSQL/PostGIS, Cloud Run, Linux VMs), ensuring production-grade robustness.',
+            'Built a high-throughput geospatial visualization engine using <strong>Kepler.gl</strong> and <strong>deck.gl</strong> to render datasets exceeding <strong>1M+ spatiotemporal points</strong>, leveraging viewport-driven rendering to reduce memory overhead by 40%.',
+            'Engineered dynamic map tools and automated data ingestion pipelines for <strong>GeoJSON</strong> and <strong>H3 vector tiles</strong> across 10+ complex layers.',
+            'Integrated AI workflows (<strong>Claude</strong>) into routine development for component scaffolding, test coverage automation, and system refactoring, boosting team sprint output by 30%.',
+            'Centralized global state management using <strong>Redux</strong> and decoupled monolithic frontend views into reusable <strong>TypeScript</strong> hooks, lowering technical debt.',
+            'Designed secure cloud data pipelines to fetch assets from <strong>Google Cloud Storage</strong> and deployed containerized micro-services on <strong>GCP Cloud Run</strong> with OAuth 2.0 security.',
+            'Streamlined environment setups by containerizing backend services with <strong>Docker</strong>, cutting build times by 50% across the GCP ecosystem.',
         ],
     },
     {
         title: 'Full Stack Intern',
         company: 'Professos',
-        duration: 'Jun 2023 - Aug 2023',
+        duration: 'Jun 2023 — Aug 2023 · Remote',
         bullets: [
-            'Developed a MERN stack recruitment portal matching students to roles and assisting companies with candidate selection workflows.',
-            'Re-architected the frontend UI using Tailwind CSS (migrating from Material UI), resulting in improved load speeds and a modern aesthetic.',
-            'Streamlined data management by implementing an Admin Dashboard using UI Bakery, simplifying administrative workflows.',
+            'Developed core features for a <strong>MERN stack</strong> recruitment portal designed to match job seekers with roles based on candidate skill profiles.',
+            'Re-architected frontend user layouts with <strong>Tailwind CSS</strong>, improving page load speed, component modularity, and overall UI responsiveness.',
         ],
     },
 ];
 
 export const PROJECTS_DATA: ProjectEntry[] = [
     {
-        title: 'Algorithm Visualizer',
-        tech: 'React, Tailwind CSS, JavaScript, Socket.io',
+        title: 'Algorithm Visualizer & Multiplayer Platform',
+        tech: 'React, Node.js, Socket.io, Tailwind CSS',
         liveDemo: 'https://visualiz.vercel.app',
         repo: 'https://github.com/Madhurg2002/Visualizer',
         bullets: [
-            'Interactive platform for visualizing pathfinding algorithms (Dijkstra, BFS, DFS) with dynamic obstacle placement and animated step-by-step execution.',
-            "Includes Conway's Game of Life plus real-time multiplayer games via Socket.io, and is extendable to Sudoku and sorting visualizations.",
+            'Real-time WebSocket communication layer with Socket.io supporting sub-100ms synchronization latency for 50+ concurrent users in turn-based sessions.',
+            'Step-by-step visualizers for Graph (Dijkstra, A*) and Sorting algorithms, maintaining a smooth 60fps execution through optimized custom React Hooks.',
         ],
         details: [
-            'Built an interactive grid where users draw and erase walls/weights, then watch Dijkstra, BFS, and DFS explore step-by-step with adjustable animation speed.',
-            "Implemented Conway's Game of Life with pattern presets and play/pause controls.",
-            'Added real-time multiplayer games over Socket.io, with lobbies and synchronized game state across clients.',
-            'Shipped the production build on Vercel with a responsive layout that works on touch devices.',
+            'Built the WebSocket layer with Socket.io for sub-100ms synchronization latency for 50+ concurrent users in turn-based sessions.',
+            'Implemented step-by-step visualizers for Graph (Dijkstra, A*) and Sorting algorithms, maintaining smooth 60fps through optimized custom React Hooks.',
+            "Implemented a deterministic seed-based generator for Sudoku boards, producing unique, shareable game IDs and 100% reproducible board states.",
+            "Includes Conway's Game of Life and dynamic obstacle placement; production build shipped on Vercel with a responsive touch-friendly layout.",
         ],
     },
     {
@@ -190,15 +205,15 @@ export const PROJECTS_DATA: ProjectEntry[] = [
     },
     {
         title: 'Budget Management App',
-        tech: 'MERN Stack, React',
+        tech: 'MERN Stack, MongoDB, Node.js',
         liveDemo: null,
         repo: null,
         bullets: [
-            'Comprehensive budget solution handling salary management, utilities tracking, and bill sharing functionalities.',
-            'Robust support for recurring timed bills with automated reminder systems and an expense dashboard.',
+            'Full-stack expense tracking platform featuring automated recurring bill reminders and dynamic salary dashboards using indexed MongoDB queries.',
+            'Role-aware expense splitting with automated reminder scheduling, plus salary, utilities, and shared-bill management.',
         ],
         details: [
-            'Modeled salaries, utilities, and shared bills in MongoDB with per-user authorization on the Express API.',
+            'Modeled salaries, utilities, and shared bills in MongoDB; built dynamic salary dashboards backed by indexed MongoDb queries.',
             'Built the recurring-bill engine that generates due entries on schedule and triggers automated reminders.',
             'Created a React dashboard summarizing expenses, upcoming bills, and overall financial health at a glance.',
         ],
