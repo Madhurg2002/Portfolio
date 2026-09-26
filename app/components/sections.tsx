@@ -3,7 +3,19 @@ import { Section, SectionHeader, Icon } from './utils';
 import { GITHUB_PROFILE_URL } from '../data';
 import { useLatestResume } from './resume';
 
-const ACHIEVEMENTS = [
+interface Achievement {
+    icon: string;
+    title: string;
+    text: string;
+    /** Optional evidence link (ACM DL entry, DOI, result page). When set, the
+     *  title becomes a link out. Left unset rather than guessed at: a wrong
+     *  URL on a publication is worse than no link. */
+    link?: string;
+    /** Short label for the outbound link's accessible name. */
+    linkLabel?: string;
+}
+
+const ACHIEVEMENTS: Achievement[] = [
     {
         icon: 'file-text',
         title: 'ACM Publication (2024)',
@@ -51,7 +63,27 @@ export const AchievementsAndEducation: React.FC = () => {
                         <Icon name={a.icon} className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
-                        <h3 className="text-base font-semibold text-carbon-100 mb-1.5">{a.title}</h3>
+                        <h3 className="text-base font-semibold text-carbon-100 mb-1.5">
+                            {a.link ? (
+                                <a
+                                    href={a.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1.5 transition-colors hover:text-heat-300"
+                                >
+                                    {a.title}
+                                    <Icon
+                                        name="external-link"
+                                        className="w-3.5 h-3.5 flex-shrink-0 text-heat-400"
+                                    />
+                                    <span className="sr-only">
+                                        {a.linkLabel ?? ` (opens ${a.title} in a new tab)`}
+                                    </span>
+                                </a>
+                            ) : (
+                                a.title
+                            )}
+                        </h3>
                         <p className="text-sm text-carbon-300 leading-relaxed">{a.text}</p>
                     </div>
                 </div>

@@ -51,6 +51,7 @@ export const meta: Route.MetaFunction = () => [
   { name: "twitter:title", content: SITE_TITLE },
   { name: "twitter:description", content: SITE_DESCRIPTION },
   { name: "twitter:image", content: `${SITE_URL}/og.png` },
+  { name: "twitter:image:alt", content: "Madhur Gupta — Full Stack Developer" },
 
   // Match the browser chrome to the active theme
   { name: "theme-color", content: "#09090b", media: "(prefers-color-scheme: dark)" },

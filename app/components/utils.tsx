@@ -71,12 +71,17 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({ index, title }) =>
 // `pt` rather than two paddings stacking. Symmetric `py` on every section made
 // each boundary 160px on mobile / 192px on desktop, which read as two separate
 // voids rather than one considered break.
+//
+// tabIndex -1 makes the section a hash-link target that can hold focus (see
+// useHashFocus); outline-none follows the <main> in home.tsx, because a 2px
+// ring drawn around a whole full-width section reads as a broken box rather
+// than as focus.
 export const Section: React.FC<{ id: string; children: React.ReactNode; className?: string }> = ({
     id,
     children,
     className = '',
 }) => (
-    <section id={id} className={`pt-16 sm:pt-24 pb-0 scroll-mt-20 ${className}`}>
+    <section id={id} tabIndex={-1} className={`pt-16 sm:pt-24 pb-0 scroll-mt-20 outline-none ${className}`}>
         {children}
     </section>
 );

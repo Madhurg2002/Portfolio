@@ -8,7 +8,8 @@
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "optimize:icons": "svgo -f app/skillsIcons"
   },
   "dependencies": {
     "@react-router/node": "^7.9.2",
@@ -28,6 +29,7 @@
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "jsdom": "^30.1.1",
+    "svgo": "^4.1.0",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
     "vite": "^7.1.7",
