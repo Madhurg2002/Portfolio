@@ -46,7 +46,9 @@ export interface ProjectEntry {
     tech: string;
     liveDemo: string | null;
     repo: string | null;
-    bullets: string[];
+    /** One-line teaser shown on the card. The modal lists `details` instead,
+     *  so keep this to a single sentence and do not restate those bullets. */
+    summary: string;
     details?: string[];
 }
 
@@ -136,12 +138,10 @@ export const PROJECTS_DATA: ProjectEntry[] = [
         tech: 'React, Node.js, Socket.io, Tailwind CSS',
         liveDemo: 'https://visualiz.vercel.app',
         repo: 'https://github.com/Madhurg2002/Visualizer',
-        bullets: [
+        summary:
             'Real-time WebSocket communication layer with Socket.io supporting sub-100ms synchronization latency for 50+ concurrent users in turn-based sessions.',
-            'Step-by-step visualizers for Graph (Dijkstra, A*) and Sorting algorithms, maintaining a smooth 60fps execution through optimized custom React Hooks.',
-        ],
         details: [
-            'Built the WebSocket layer with Socket.io, holding sub-100ms synchronization latency across 50+ concurrent users in turn-based sessions.',
+            'Designed a room-based Socket.io protocol where the server owns game state, so a dropped connection re-syncs the board instead of corrupting the match.',
             'Implemented step-by-step visualizers for Graph (Dijkstra, A*) and Sorting algorithms, maintaining smooth 60fps through optimized custom React Hooks.',
             'Implemented a deterministic, seed-based generator for Sudoku boards, producing unique, shareable game IDs and 100% reproducible board states.',
             'Shipped Conway\u2019s Game of Life and dynamic obstacle placement; production build on Vercel with a responsive, touch-friendly layout.',
@@ -153,10 +153,8 @@ export const PROJECTS_DATA: ProjectEntry[] = [
         tech: 'TypeScript, Fastify, React, PostgreSQL, Vitest',
         liveDemo: 'https://grafana-helper.vercel.app/',
         repo: 'https://github.com/Madhurg2002/grafana',
-        bullets: [
+        summary:
             'High-throughput, stateless Fastify proxy and mobile-first React frontend for routing, caching, and streaming Prometheus PromQL queries — so routine queries no longer need a full Grafana instance.',
-            'PostgreSQL persistence with AES-256-GCM encrypted credentials, socket pooling via Undici, rate limiting, and a Vitest-tested codebase.',
-        ],
         details: [
             'Proxied /api/v1/query and /api/v1/query_range directly with an LRU cache and Undici socket pooling for high-throughput PromQL serving.',
             'Protected Prometheus credentials with AES-256-GCM encryption at rest in a PostgreSQL schema, plus rate limiting and CORS on the API.',
@@ -165,17 +163,29 @@ export const PROJECTS_DATA: ProjectEntry[] = [
         ],
     },
     {
+        title: 'Budget Management App',
+        icon: 'piggy-bank',
+        tech: 'MERN Stack, MongoDB, Node.js',
+        liveDemo: 'https://budgetsn.vercel.app/',
+        repo: null,
+        summary:
+            'Full-stack expense tracking platform featuring automated recurring bill reminders and dynamic salary dashboards using indexed MongoDB queries.',
+        details: [
+            'Modeled salaries, utilities, and shared bills as separate MongoDB collections, with every household member scoped to only the records they own.',
+            'Built the recurring-bill engine that generates due entries on schedule and triggers automated reminders.',
+            'Created a React dashboard summarizing expenses, upcoming bills, and overall financial health at a glance.',
+        ],
+    },
+    {
         title: 'DevCleaner CLI',
         icon: 'trash-2',
         tech: 'Python',
         liveDemo: null,
         repo: 'https://github.com/Madhurg2002/Clean_dev',
-        bullets: [
+        summary:
             'High-performance, colorized CLI that scans directories and interactively cleans disk-heavy development caches (node_modules, venvs, __pycache__, Rust/Java/Gradle builds).',
-            'Detects safe-to-delete targets by checking parent manifests (package.json, Cargo.toml, pom.xml) before cleanup.',
-        ],
         details: [
-            'Wrote scanners covering Node.js, Python/Conda virtualenvs, Rust target dirs, Gradle/Maven caches, and C/C++ build folders.',
+            'Wrote per-ecosystem scanners that match each build system\u2019s cache layout, walk the directory once, and total the bytes each candidate is holding.',
             'Added safety checks that confirm a parent manifest (package.json, Cargo.toml, pom.xml, pyvenv.cfg) before marking a directory deletable.',
             'Implemented interactive selection with per-item size reporting and colorized terminal output.',
             'Packaged it as an installable CLI so a single command reclaims gigabytes of disk space.',
@@ -187,10 +197,8 @@ export const PROJECTS_DATA: ProjectEntry[] = [
         tech: 'C++',
         liveDemo: null,
         repo: 'https://github.com/Madhurg2002/TicTacToe',
-        bullets: [
+        summary:
             'Unbeatable opponent built on the minimax algorithm with alpha-beta pruning of losing branches.',
-            'Console-based C++ implementation exploring game-tree search depth versus performance.',
-        ],
         details: [
             'Modeled the full game tree and scored terminal states so the AI always plays optimally or forces a draw.',
             'Pruned losing branches early to keep move computation instant even in the worst case.',
@@ -203,10 +211,8 @@ export const PROJECTS_DATA: ProjectEntry[] = [
         tech: 'JavaScript, Ethereum, Hardhat',
         liveDemo: null,
         repo: 'https://github.com/Madhurg2002/Web3-wave',
-        bullets: [
+        summary:
             'Decentralized wave portal where visitors connect a wallet and leave a wave on-chain — built on Ethereum while learning Solidity.',
-            'Contract interactions, transactions, and a frontend wired to the deployed smart contract on the Rinkeby test network.',
-        ],
         details: [
             'Wrote a Solidity contract storing waves with a total counter and pseudo-random prize payout, deployed via Hardhat scripts.',
             'Connected MetaMask wallet flows, signing real transactions on the Rinkeby test network.',
@@ -219,30 +225,12 @@ export const PROJECTS_DATA: ProjectEntry[] = [
         tech: 'JavaScript, Node.js, Discord.js',
         liveDemo: null,
         repo: 'https://github.com/Madhurg2002/Discord-music-bot',
-        bullets: [
+        summary:
             'Discord music bot streaming from YouTube and Soundcloud with queueing, shuffling, and volume control.',
-            'Slash-command interface with a small Node.js backend for playback control.',
-        ],
         details: [
             'Implemented a persistent queue supporting play, pause, skip, shuffle, loop, and volume commands from any server the bot joins.',
             'Added slash-command registration so Discord natively autocompletes and validates commands.',
             'Handled audio streaming from YouTube and Soundcloud sources with error recovery when tracks or streams fail.',
-        ],
-    },
-    {
-        title: 'Budget Management App',
-        icon: 'piggy-bank',
-        tech: 'MERN Stack, MongoDB, Node.js',
-        liveDemo: 'https://budgetsn.vercel.app/',
-        repo: null,
-        bullets: [
-            'Full-stack expense tracking platform featuring automated recurring bill reminders and dynamic salary dashboards using indexed MongoDB queries.',
-            'Role-aware expense splitting with automated reminder scheduling, plus salary, utilities, and shared-bill management.',
-        ],
-        details: [
-            'Modeled salaries, utilities, and shared bills in MongoDB; built dynamic salary dashboards backed by indexed MongoDb queries.',
-            'Built the recurring-bill engine that generates due entries on schedule and triggers automated reminders.',
-            'Created a React dashboard summarizing expenses, upcoming bills, and overall financial health at a glance.',
         ],
     },
 ];
