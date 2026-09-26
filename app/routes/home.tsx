@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useLucideIcons } from '../components/utils';
 import { Navbar } from '../components/navbar';
 import { Hero } from '../components/hero';
 import { Skills } from '../components/skills';
@@ -9,6 +10,8 @@ import { AchievementsAndEducation, Contact } from '../components/sections';
 import { Footer } from '../components/utils';
 
 const App: React.FC = () => {
+    useLucideIcons();
+
     return (
         <div className="relative min-h-screen bg-carbon-950">
             {/* ambient background: grid + glows */}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface IconProps {
     name: string;
@@ -15,6 +15,18 @@ interface SectionHeaderProps {
 export const Icon: React.FC<IconProps> = ({ name, className = '', style = {} }) => (
     <span data-lucide={name} className={className} style={style}></span>
 );
+
+/**
+ * Re-run lucide.createIcons() after render so <span data-lucide> elements
+ * become SVGs. Must re-run whenever icons swap (toggles, menus, modals).
+ */
+export function useLucideIcons(deps: unknown[] = []) {
+    useEffect(() => {
+        const w = window as unknown as { lucide?: { createIcons?: () => void } };
+        w.lucide?.createIcons?.();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, deps);
+}
 
 // Numbered section header used across the page
 export const SectionHeader: React.FC<SectionHeaderProps> = ({ index, title }) => (

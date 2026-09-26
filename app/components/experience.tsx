@@ -19,7 +19,15 @@ export const Experience: React.FC = () => {
                             <div className="group p-6 sm:p-7 rounded-2xl border border-carbon-700 bg-carbon-850 hover:border-carbon-600 transition duration-300">
                                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-4">
                                     <h3 className="text-xl font-semibold text-white">
-                                        {job.title} <span className="text-heat-400">@ {job.company}</span>
+                                        {job.title}{' '}<span className="text-heat-400">@ </span>
+                                        <a
+                                            href={job.company === 'Professos' ? 'https://professos.com/' : undefined}
+                                            target={job.company === 'Professos' ? '_blank' : undefined}
+                                            rel="noopener noreferrer"
+                                            className={job.company === 'Professos' ? 'text-heat-400 hover:text-heat-300 underline decoration-heat-400/40 hover:decoration-heat-300 transition' : 'text-heat-400'}
+                                        >
+                                            {job.company}
+                                        </a>
                                     </h3>
                                     <p className="font-mono text-xs text-carbon-400">{job.duration}</p>
                                 </div>

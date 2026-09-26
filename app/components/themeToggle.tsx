@@ -1,9 +1,10 @@
 import React from 'react';
-import { Icon } from './utils';
+import { Icon, useLucideIcons } from './utils';
 import { useTheme } from './hooks';
 
 export const ThemeToggle: React.FC<{ className?: string }> = ({ className = '' }) => {
     const { theme, toggle } = useTheme();
+    useLucideIcons([theme]);
     const nextLabel = theme === 'dark' ? 'Light' : 'Dark';
 
     return (

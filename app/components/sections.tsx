@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section, SectionHeader, Icon } from './utils';
+import { Section, SectionHeader, Icon, useLucideIcons } from './utils';
 import { GITHUB_PROFILE_URL, RESUME_DRIVE_FOLDER_URL } from '../data';
 import { useLatestResume } from './resume';
 
@@ -26,7 +26,9 @@ const ACHIEVEMENTS = [
     },
 ];
 
-export const AchievementsAndEducation: React.FC = () => (
+export const AchievementsAndEducation: React.FC = () => {
+    useLucideIcons();
+    return (
     <Section id="achievements">
         <SectionHeader index="/04 — wins" title="Achievements & Education" />
         <div className="grid sm:grid-cols-2 gap-5">
@@ -57,7 +59,8 @@ export const AchievementsAndEducation: React.FC = () => (
             ))}
         </div>
     </Section>
-);
+    );
+};
 
 const CONTACTS = [
     {
@@ -94,6 +97,7 @@ const CONTACTS = [
 
 export const Contact: React.FC = () => {
     const resume = useLatestResume();
+    useLucideIcons([resume.url]);
 
     return (
     <Section id="contact" className="text-center">

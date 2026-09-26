@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Icon } from './utils';
+import { Icon, useLucideIcons } from './utils';
 import { ThemeToggle } from './themeToggle';
 
 export const Navbar: React.FC = () => {
     const links = ['skills', 'experience', 'projects', 'achievements', 'contact'];
     const [open, setOpen] = useState(false);
+    useLucideIcons([open]);
 
     return (
         <header className="fixed top-0 inset-x-0 z-50">
