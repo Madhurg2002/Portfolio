@@ -7,9 +7,42 @@ interface Latest {
     name: string;
 }
 
+const MONTHS = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+
+/**
+ * Drive's embedded folder view renders last-modified dates in three shapes
+ * (US locale): "M/D/YY" for older files, "MMM D" for files modified this
+ * calendar year, and a bare time like "2:18 am" for files modified today.
+ * Returns a timestamp, or null when nothing sensible can be extracted.
+ */
+function parseDriveDate(raw: string): number | null {
+    const s = raw.trim();
+
+    const mdy = /^(\d{1,2})\/(\d{1,2})\/(\d{2})$/.exec(s);
+    if (mdy) {
+        return new Date(2000 + Number(mdy[3]), Number(mdy[1]) - 1, Number(mdy[2])).getTime();
+    }
+
+    const monDay = /^([A-Za-z]{3})\s+(\d{1,2})$/.exec(s);
+    if (monDay) {
+        const month = MONTHS.indexOf(monDay[1].toLowerCase());
+        if (month >= 0) {
+            return new Date(new Date().getFullYear(), month, Number(monDay[2])).getTime();
+        }
+    }
+
+    // Time-only: the file was touched today.
+    if (/^\d{1,2}:\d{2}\s*(am|pm)?$/i.test(s)) {
+        const now = new Date();
+        return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+    }
+
+    const fallback = new Date(s).getTime();
+    return Number.isNaN(fallback) ? null : fallback;
+}
+
 /**
  * Parse the newest entry from Drive's public "embedded folder view" HTML.
- * Dates are MM/DD/YY in Drive's US locale.
  */
 function parseLatest(html: string): Latest | null {
     const re =
@@ -18,8 +51,8 @@ function parseLatest(html: string): Latest | null {
     let best: (Latest & { modified: number }) | null = null;
 
     while ((match = re.exec(html)) !== null) {
-        const modified = new Date(match[3]).getTime();
-        if (Number.isNaN(modified)) continue;
+        const modified = parseDriveDate(match[3]);
+        if (modified === null) continue;
         if (!best || modified > best.modified) {
             best = { id: match[1], name: match[2].trim(), modified };
         }
