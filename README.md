@@ -24,6 +24,7 @@ Personal portfolio website showcasing my work as a Full Stack Developer.
 - **Contact cards** — Email, Phone, LinkedIn, GitHub, LeetCode
 - **Carbon/amber terminal-inspired theme** with an ambient grid backdrop
 - **Mobile-first and keyboard accessible** — layouts are built for narrow screens first, with visible focus rings, a skip-to-content link, Escape and focus handling on the menu and modal, and `prefers-reduced-motion` support
+- **Real focus management** — the project modal and the mobile nav menu both trap Tab, and mark the rest of the page `inert` while open, so `aria-modal` is a promise the DOM actually keeps rather than a decoration. Pinned by `app/components/focus-trap.dom.test.tsx`
 - **SEO and link previews** — a real page title, Open Graph and Twitter cards pointing at `public/og.png`, a canonical URL, JSON-LD `Person` schema, `robots.txt`, `sitemap.xml` and a styled 404. Regenerate the social image with `python3 scripts/generate-og.py` (pure stdlib, no image libraries needed)
 
 ## 🛠 Tech Stack
@@ -69,6 +70,11 @@ npm run dev
 | `npm run typecheck` | Generates route types, then runs `tsc` |
 | `npm test` | Runs the Vitest suite once |
 | `npm run test:watch` | Vitest in watch mode |
+
+Component tests run under jsdom via a `// @vitest-environment jsdom`
+docblock; everything else stays on the fast node environment. `vitest.config.ts`
+exists because the React Router Vite plugin rewrites JSX to expect its
+client-side runtime preamble, which is not present in a bare component test.
 
 ## 🗂 Repository layout
 
