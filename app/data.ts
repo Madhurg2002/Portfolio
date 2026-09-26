@@ -52,13 +52,12 @@ export const GITHUB_PROFILE_URL = 'https://github.com/Madhurg2002';
 
 /**
  * Google Drive folder holding every version of the resume.
- * The site lists files in this folder and links the most recently
- * modified one (see app/components/resume.ts).
+ * The server route /resume (app/routes/resume.ts) resolves the most
+ * recently modified file in this folder keylessly (embedded folder view)
+ * and streams its bytes same-origin — no API key needed.
  *
- * To enable the "latest file" resolution, set VITE_GOOGLE_DRIVE_API_KEY
- * (Google Cloud console → APIs & Services → Credentials → API key,
- * with the Google Drive API enabled). Without it, the buttons open
- * the whole folder instead.
+ * public/resume.pdf is a bundled fallback for when Drive is unreachable.
+ * Refresh it whenever you upload a newer version to the Drive folder.
  */
 export const RESUME_DRIVE_FOLDER_URL =
     'https://drive.google.com/drive/folders/1Y-kttLqnemV5qcnwQhQ7_3_1D2Jas1Yw?usp=sharing';

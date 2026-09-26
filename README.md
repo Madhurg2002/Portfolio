@@ -31,17 +31,15 @@ Also reachable via [https://madhurg2002.is-a.dev/](https://madhurg2002.is-a.dev/
 - [TypeScript](https://www.typescriptlang.org)
 - [Lucide icons](https://lucide.dev)
 
-## 📄 Resume via Google Drive
+## 📄 Resume — always the latest version
 
 All resume versions live in a single [Google Drive folder](https://drive.google.com/drive/folders/1Y-kttLqnemV5qcnwQhQ7_3_1D2Jas1Yw).
 
-The site queries the Drive API for the **latest file** in that folder (ordered by `modifiedTime desc`) and links it directly:
+The `/resume` server route (app/routes/resume.ts) resolves the **most recently modified** file in that folder — keylessly, via Drive's public embedded folder view — and streams the actual PDF bytes from the site's own origin, so it works even on networks that block drive.google.com. The button's subtitle shows the resolved file name.
 
-1. Create a Google Cloud API key with the **Google Drive API** enabled (APIs & Services → Credentials).
-2. Set it as `VITE_GOOGLE_DRIVE_API_KEY` (locally in `.env`, in Vercel project settings for production).
-3. The folder must stay shared as "Anyone with the link".
+If Drive is unreachable (rate limit, outage), `/resume` falls back to the bundled copy at `public/resume.pdf` — so the button always opens a resume. **When you upload a new resume to the Drive folder, refresh `public/resume.pdf` too** (the fallback is only fetched if the live lookup fails, but it should stay reasonably current).
 
-Without the key the Resume button simply opens the folder view — everything still works.
+No API key or configuration is needed; the folder just has to stay shared as "Anyone with the link".
 
 ## 🚀 Getting Started
 
