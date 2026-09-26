@@ -2,7 +2,7 @@
  * Inline Lucide icon data.
  *
  * These are the exact node definitions from lucide@0.462.0, narrowed to the
- * 18 icons this site actually renders. They used to be loaded as a
+ * 19 icons this site actually renders. They used to be loaded as a
  * 350KB UMD bundle from a CDN and swapped in at runtime by
  * `lucide.createIcons()`, which meant a blocked CDN silently blanked every
  * icon AND nothing rendered at all without JavaScript. Inlining them makes the
@@ -10,7 +10,8 @@
  * entirely, and cuts the payload to a few kilobytes.
  *
  * To add an icon: copy its `[tag, attrs]` nodes out of the lucide package
- * (or the lucide site) and add another entry below.
+ * (or the lucide site) and add another entry below. `icons.test.ts` fails if
+ * a component references a name that is not defined here.
  */
 
 /** The SVG element names Lucide icons are built from. */
@@ -63,6 +64,15 @@ export const ICONS: Record<string, IconData> = {
     [
     ['path', {"d":"M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"}],
     ['path', {"d":"M9 18c-4.51 2-5-2-7-2"}],
+    ],
+  ],
+  'folder-git-2': [
+    ['svg', {"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round"}],
+    [
+    ['path', {"d":"M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5"}],
+    ['circle', {"cx":"13","cy":"12","r":"2"}],
+    ['path', {"d":"M18 19c-2.8 0-5-2.2-5-5v8"}],
+    ['circle', {"cx":"20","cy":"19","r":"2"}],
     ],
   ],
   'globe-lock': [

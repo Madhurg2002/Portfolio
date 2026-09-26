@@ -17,7 +17,18 @@ interface SectionHeaderProps {
 // Icons are decorative here: every icon-only control already carries its own
 // aria-label, so the glyph itself is hidden from assistive tech.
 export const Icon: React.FC<IconProps> = ({ name, className = '', style = {} }) => {
-    if (!hasIcon(name)) return null;
+    if (!hasIcon(name)) {
+        // An unknown name renders nothing at all, which is easy to miss in
+        // review and shipped once already: the folder-git-2 project icon was
+        // dropped when the inlined icon set was built, and every project card
+        // silently lost its glyph. Warn loudly in dev instead of failing quiet.
+        if (import.meta.env.DEV) {
+            console.warn(
+                `[icons] "${name}" is not in app/components/icons.tsx — rendering nothing.`,
+            );
+        }
+        return null;
+    }
 
     const [[, attrs], children] = ICONS[name];
     // The data is raw SVG attribute data; widening to ElementType/SVGProps keeps
