@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Icon } from './utils';
+import { GITHUB_PROFILE_URL } from '../data';
 
 export const Hero: React.FC = () => {
     const roles: string[] = ["Full Stack Developer", "Backend Automation Specialist", "Geospatial Engineer", "UI/UX Enthusiast"];
@@ -44,12 +46,15 @@ export const Hero: React.FC = () => {
                     A <span className="gradient-text font-mono tracking-wide">{displayedText}</span>
                     <span className="inline-block w-1 bg-green-400 animate-pulse ml-1 h-8"></span>
                 </p>
-                <div className="flex justify-center space-x-4">
+                <div className="flex flex-wrap justify-center gap-4">
                     <a href="#projects" className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-xl shadow-sm text-gray-900 bg-green-400 hover:bg-green-500 transition duration-300 transform hover:scale-105">
                         View Projects
                     </a>
                     <a href="mailto:madhurg2002@gmail.com" className="inline-flex items-center px-8 py-3 border border-green-400 text-base font-medium rounded-xl text-green-400 hover:bg-green-900 transition duration-300 transform hover:scale-105">
                         Get in Touch
+                    </a>
+                    <a href={GITHUB_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-8 py-3 border border-green-400 text-base font-medium rounded-xl text-green-400 hover:bg-green-900 transition duration-300 transform hover:scale-105">
+                        <Icon name="github" className="w-5 h-5 mr-2" /> GitHub
                     </a>
                 </div>
             </div>

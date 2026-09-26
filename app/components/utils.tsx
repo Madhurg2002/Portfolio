@@ -60,7 +60,7 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({ id, title, child
 export const Footer: React.FC = () => (
     <footer className="bg-gray-900 border-t border-gray-800 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
-            <p>&copy; 2025 Madhur Gupta. Built with Tailwind CSS & React.</p>
+            <p>&copy; {new Date().getFullYear()} Madhur Gupta. Built with React, Tailwind CSS & lots of ☕.</p>
         </div>
     </footer>
 );

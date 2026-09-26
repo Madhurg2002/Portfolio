@@ -24,9 +24,13 @@ export const Skills: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-4 pt-8 bg-gray-800 rounded-xl text-center tilt-card transition duration-300 group react-logo-wrapper"
-                  ref={(el) => (cardRefs.current[refIndex++] = el)}
+                  ref={(el) => { cardRefs.current[refIndex++] = el; }}
                 >
-                  <img src={skill.icon} alt={skill.name} className="text-4xl mb-2 block mx-auto w-8 group-hover:text-green-400 transition duration-300" style={{ color: skill.color }} />
+                  {typeof skill.icon === 'string' ? (
+                    <img src={skill.icon} alt={skill.name} className="text-4xl mb-2 block mx-auto w-8 group-hover:text-green-400 transition duration-300" style={{ color: skill.color }} />
+                  ) : (
+                    React.createElement(skill.icon, { className: "text-4xl mb-2 block mx-auto w-8 transition duration-300", style: { color: skill.color } })
+                  )}
                   <p className="font-medium">{skill.name}</p>
                   <span className="skill-doc-link text-gray-500 hover:text-green-400 text-xs">
                     Docs <Icon name="arrow-up-right" className="w-3 h-3 ml-1" />

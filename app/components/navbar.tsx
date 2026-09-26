@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Icon } from './utils';
+import { GITHUB_PROFILE_URL } from '../data';
 
 export const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,12 +19,16 @@ export const Navbar: React.FC = () => {
                     <div className="flex-shrink-0">
                         <a href="#home" className="text-xl font-bold gradient-text">Madhur.dev</a>
                     </div>
-                    <div className="hidden md:flex space-x-4">
+                    <div className="hidden md:flex items-center space-x-4">
                         {['skills', 'experience', 'projects', 'achievements', 'contact'].map(id => (
                             <a key={id} href={`#${id}`} className="text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium transition duration-300 capitalize">
                                 {id}
                             </a>
                         ))}
+                        <a href={GITHUB_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-gray-300 hover:text-green-400 px-3 py-2 rounded-md text-sm font-medium transition duration-300">
+                            <Icon name="github" className="w-5 h-5" />
+                            <span className="sr-only">GitHub Profile</span>
+                        </a>
                     </div>
                     <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-gray-300 hover:text-green-400 focus:outline-none">
                         <Icon name={isOpen ? 'x' : 'menu'} className="w-6 h-6" />
@@ -38,6 +43,9 @@ export const Navbar: React.FC = () => {
                             {id}
                         </a>
                     ))}
+                    <a href={GITHUB_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+                        <Icon name="github" className="w-5 h-5 mr-2" /> GitHub Profile
+                    </a>
                 </div>
             </div>
         </nav>

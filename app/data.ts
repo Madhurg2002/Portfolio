@@ -33,8 +33,11 @@ export interface ProjectEntry {
     title: string;
     tech: string;
     liveDemo: string | null;
+    repo: string | null;
     bullets: string[];
 }
+
+export const GITHUB_PROFILE_URL = 'https://github.com/Madhurg2002';
 
 // --- DATA STRUCTURES ---
 
@@ -93,22 +96,72 @@ export const EXPERIENCE_DATA: ExperienceEntry[] = [
 export const PROJECTS_DATA: ProjectEntry[] = [
     {
         title: 'Algorithm Visualizer',
-        tech: 'React, JavaScript',
-        liveDemo: 'visualiz.vercel.app',
+        tech: 'React, Tailwind CSS, JavaScript, Socket.io',
+        liveDemo: 'https://visualiz.vercel.app',
+        repo: 'https://github.com/Madhurg2002/Visualizer',
         bullets: [
-            'Developed an interactive web platform to visualize core pathfinding algorithms (Dijkstra, BFS, DFS) with dynamic obstacle placement.',
-            "Features include animated step-by-step execution and a working Conway's Game of Life simulation.",
-            'Project is expandable to include Sudoku, cellular automata, and sorting visualizations.',
+            'Interactive platform for visualizing pathfinding algorithms (Dijkstra, BFS, DFS) with dynamic obstacle placement and animated step-by-step execution.',
+            "Includes Conway's Game of Life plus real-time multiplayer games via Socket.io, and is extendable to Sudoku and sorting visualizations.",
+        ],
+    },
+    {
+        title: 'Prometheus Grafana Passthrough',
+        tech: 'TypeScript, Fastify, React, PostgreSQL, Vitest',
+        liveDemo: 'https://grafana-frontend.vercel.app',
+        repo: 'https://github.com/Madhurg2002/grafana',
+        bullets: [
+            'High-throughput, stateless Fastify proxy and mobile-first React frontend for routing, caching, and streaming Prometheus PromQL queries — eliminating Grafana dependencies.',
+            'PostgreSQL persistence with AES-256-GCM encrypted credentials, socket pooling via Undici, rate limiting, and a Vitest-tested codebase.',
+        ],
+    },
+    {
+        title: 'DevCleaner CLI',
+        tech: 'Python',
+        liveDemo: null,
+        repo: 'https://github.com/Madhurg2002/Clean_dev',
+        bullets: [
+            'High-performance, colorized CLI that scans directories and interactively cleans space-hogging dev caches (node_modules, venvs, __pycache__, Rust/Java/Gradle builds).',
+            'Detects safe-to-delete targets by checking parent manifests (package.json, Cargo.toml, pom.xml) before cleanup.',
+        ],
+    },
+    {
+        title: 'TicTacToe with Minimax AI',
+        tech: 'C++',
+        liveDemo: null,
+        repo: 'https://github.com/Madhurg2002/TicTacToe',
+        bullets: [
+            'Unbeatable Tic-Tac-Toe opponent built on the minimax algorithm with alpha-beta style pruning of losing branches.',
+            'Console-based C++ implementation exploring game-tree search depth versus performance.',
+        ],
+    },
+    {
+        title: 'Web3 Wave DApp',
+        tech: 'JavaScript, Ethereum, Hardhat',
+        liveDemo: null,
+        repo: 'https://github.com/Madhurg2002/Web3-wave',
+        bullets: [
+            'Decentralized wave portal where visitors connect a wallet and wave at me on-chain — built on Ethereum while learning Solidity.',
+            'Contract interactions, transactions, and a frontend wired to the deployed smart contract on the Rinkeby test network.',
+        ],
+    },
+    {
+        title: 'Discord Music Bot',
+        tech: 'JavaScript, Node.js, Discord.js',
+        liveDemo: null,
+        repo: 'https://github.com/Madhurg2002/Discord-music-bot',
+        bullets: [
+            'Discord music bot streaming from YouTube and Soundcloud with queueing, shuffling, and volume control.',
+            'Slash-command interface with a small Node.js backend for playback control.',
         ],
     },
     {
         title: 'Budget Management App',
         tech: 'MERN Stack, React',
         liveDemo: null,
+        repo: null,
         bullets: [
-            'A comprehensive budget solution handling salary management, utilities tracking, and bill sharing functionalities.',
-            'Implemented robust support for recurring timed bills with automated reminder systems.',
-            'Provides users with an intuitive dashboard summarizing expenses, upcoming bills, and overall financial health.',
+            'Comprehensive budget solution handling salary management, utilities tracking, and bill sharing functionalities.',
+            'Robust support for recurring timed bills with automated reminder systems and an expense dashboard.',
         ],
     },
 ];

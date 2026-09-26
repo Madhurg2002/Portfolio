@@ -1,5 +1,6 @@
 import React from 'react';
 import { SectionWrapper, Icon } from './utils'; // Corrected import path
+import { GITHUB_PROFILE_URL } from '../data';
 
 export const AchievementsAndEducation: React.FC = () => (
     <SectionWrapper id="achievements" title="Achievements & Education">
@@ -27,13 +28,13 @@ export const Contact: React.FC = () => (
             <a href="https://wa.me/919034453365" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-6 py-3 border border-green-400 text-base font-medium rounded-xl text-green-400 hover:bg-green-900 transition duration-300 transform hover:scale-105">
                 <Icon name="message-square" className="w-5 h-5 mr-2" /> WhatsApp
             </a>
-            <a href="https://www.linkedin.com/in/madhurg2002/overlay/messaging/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-6 py-3 border border-green-400 text-base font-medium rounded-xl text-green-400 hover:bg-green-900 transition duration-300 transform hover:scale-105">
+            <a href="https://www.linkedin.com/in/madhurg2002/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-6 py-3 border border-green-400 text-base font-medium rounded-xl text-green-400 hover:bg-green-900 transition duration-300 transform hover:scale-105">
                 <Icon name="linkedin" className="w-5 h-5 mr-2" /> LinkedIn Message
             </a>
         </div>
 
         <div className="mt-12 text-gray-500 text-sm">
-            <p>Find me on GitHub: <a href="https://github.com/madhurg2002" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400">github.com/madhurg2002</a></p>
+            <p>Find me on GitHub: <a href={GITHUB_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400">github.com/Madhurg2002</a></p>
         </div>
     </SectionWrapper>
 );

@@ -13,7 +13,7 @@ export const Projects: React.FC = () => {
                     <div
                         key={index}
                         className="bg-gray-800 p-6 rounded-xl tilt-card shadow-lg hover:shadow-green-900/50 transition duration-300"
-                        ref={el => (cardRefs.current[index] = el)}
+                        ref={el => { cardRefs.current[index] = el; }}
                     >
                         <h3 className="text-2xl font-semibold text-white mb-2">{project.title}</h3>
                         <p className="text-sm text-green-400 mb-4">{project.tech}</p>
@@ -22,12 +22,17 @@ export const Projects: React.FC = () => {
                                 <li key={i} dangerouslySetInnerHTML={{ __html: bullet }} />
                             ))}
                         </ul>
-                        <div className="flex space-x-4">
-                            {project.liveDemo ? (
-                                <a href={`https://${project.liveDemo}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-green-400 hover:text-green-300 transition duration-300">
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                            {project.liveDemo && (
+                                <a href={project.liveDemo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-green-400 hover:text-green-300 transition duration-300">
                                     <Icon name="external-link" className="w-4 h-4 mr-1" /> Live Demo
                                 </a>
-                            ) : (
+                            )}
+                            {project.repo ? (
+                                <a href={project.repo} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-sm font-medium text-green-400 hover:text-green-300 transition duration-300">
+                                    <Icon name="github" className="w-4 h-4 mr-1" /> View Code
+                                </a>
+            ) : (
                                 <span className="inline-flex items-center text-sm font-medium text-gray-500">
                                     <Icon name="code" className="w-4 h-4 mr-1" /> Code Private
                                 </span>

@@ -1,14 +1,14 @@
 import { useEffect, useRef, useCallback } from 'react';
 
-// Define the type for the element reference, which is an HTMLDivElement for our cards
-type CardRef = HTMLDivElement | null;
+// Define the type for the element reference, which is a generic HTMLElement for our cards
+type CardRef = HTMLElement | null;
 type CardRefs = React.RefObject<CardRef[]>;
 
 // Hook to integrate 3D tilt effect on multiple cards
 export const useTiltEffect = (maxTilt: number = 8, maxShadow: number = 12): CardRefs => {
     const cardRefs = useRef<CardRef[]>([]);
 
-    const handleMouseMove = useCallback((e: MouseEvent, card: HTMLDivElement) => {
+    const handleMouseMove = useCallback((e: MouseEvent, card: HTMLElement) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -28,7 +28,7 @@ export const useTiltEffect = (maxTilt: number = 8, maxShadow: number = 12): Card
         card.style.borderColor = '#10B981';
     }, [maxTilt, maxShadow]);
 
-    const handleMouseLeave = useCallback((card: HTMLDivElement) => {
+    const handleMouseLeave = useCallback((card: HTMLElement) => {
         card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
         card.style.boxShadow = 'none';
         card.style.borderColor = 'transparent';
@@ -36,7 +36,7 @@ export const useTiltEffect = (maxTilt: number = 8, maxShadow: number = 12): Card
 
     useEffect(() => {
         // Filter out null/undefined refs and assert type
-        const cards = cardRefs.current.filter((c): c is HTMLDivElement => c !== null);
+        const cards = cardRefs.current.filter((c): c is HTMLElement => c !== null);
 
         const listeners = cards.map(card => {
             const moveHandler = (e: MouseEvent) => handleMouseMove(e, card);

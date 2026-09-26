@@ -13,7 +13,7 @@ export const Experience: React.FC = () => {
                     <div
                         key={index}
                         className="bg-gray-800 p-6 sm:p-8 rounded-xl tilt-card shadow-lg hover:shadow-green-900/50 transition duration-300"
-                        ref={el => (cardRefs.current[index] = el)}
+                        ref={el => { cardRefs.current[index] = el; }}
                     >
                         <div className="flex flex-col md:flex-row justify-between items-start mb-4">
                             <div>
