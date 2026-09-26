@@ -167,9 +167,10 @@ html.light .bg-grid {
 }
 
 /* ---------- skill SVG handling per theme ----------
-   Dark-on-dark brand SVGs (JavaScript, Next.js, Linux, Node gray) get a
-   soft white halo on dark backgrounds; on light they sit on white tiles
-   and need no help. Letter-mark tiles (TS, Redux, deck.gl, …) read on both. */
+   Tiles are theme-aware (carbon-800 flips with the palette). On dark tiles
+   every logo gets a soft white halo; on light tiles colored logos just get
+   a slight saturation lift, and pure-white monochrome logos (Next.js,
+   Express, Socket.io) are darkened so they don't vanish. */
 .skill-icon {
   transition: filter 0.2s ease, transform 0.2s ease;
 }
@@ -180,6 +181,11 @@ html.dark .skill-icon {
 
 html.light .skill-icon {
   filter: saturate(1.05);
+}
+
+/* must come after the rules above: same specificity, later wins */
+html.light .skill-icon-white {
+  filter: brightness(0.35);
 }
 
 /* ---------- hero entrance ---------- */
@@ -211,21 +217,3 @@ html.light .skill-icon {
   animation-delay: 0.38s;
 }
 
-/* ---------- react logo (skills) ---------- */
-
-@keyframes react-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.react-logo svg ellipse {
-  fill: var(--color-carbon-850) !important;
-}
-
-.react-logo-wrapper:hover .react-spin-target {
-  animation: react-spin 9s linear infinite;
-}

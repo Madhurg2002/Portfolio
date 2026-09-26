@@ -28,6 +28,8 @@ export interface Skill {
     icon: string | React.FC<React.SVGProps<SVGSVGElement>>;
     color: string;
     link: string;
+    /** Pure-white monochrome logos; darkened on light-mode tiles via CSS. */
+    whiteLogo?: boolean;
 }
 
 export interface ExperienceEntry {
@@ -69,7 +71,7 @@ export const RESUME_DRIVE_FOLDER_ID = '1Y-kttLqnemV5qcnwQhQ7_3_1D2Jas1Yw';
 export const SKILLS_DATA: Record<string, Skill[]> = {
     Frontend: [
         { name: 'React.js', icon: ReactIcon, color: '#61DAFB', link: 'https://react.dev/learn' },
-        { name: 'Next.js', icon: NextIcon, color: '#6EE7B7', link: 'https://nextjs.org/docs' },
+        { name: 'Next.js', icon: NextIcon, color: '#6EE7B7', link: 'https://nextjs.org/docs', whiteLogo: true },
         { name: 'TypeScript', icon: TypeScriptIcon, color: '#3178C6', link: 'https://www.typescriptlang.org/docs/' },
         { name: 'Redux', icon: ReduxIcon, color: '#764ABC', link: 'https://redux.js.org/' },
         { name: 'deck.gl', icon: DeckIcon, color: '#FF6FB4', link: 'https://deck.gl/docs' },
@@ -78,12 +80,12 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
     ],
     'Backend & Cloud': [
         { name: 'Node.js', icon: NodeIcon, color: '#339933', link: 'https://nodejs.org/en/docs' },
-        { name: 'Express', icon: ExpressIcon, color: '#6B7280', link: 'https://expressjs.com/' },
+        { name: 'Express', icon: ExpressIcon, color: '#6B7280', link: 'https://expressjs.com/', whiteLogo: true },
         { name: 'PostGIS', icon: PostgreSQLIcon, color: '#336791', link: 'https://postgis.net/documentation/' },
         { name: 'GCP (Cloud Run)', icon: gcpIcon, color: '#4285F4', link: 'https://cloud.google.com/docs' },
         { name: 'Docker', icon: DockerIcon, color: '#2496ED', link: 'https://docs.docker.com/' },
         { name: 'MongoDB', icon: MongoDBIcon, color: '#47A248', link: 'https://www.mongodb.com/docs/' },
-        { name: 'Socket.io', icon: SocketIcon, color: '#FFFFFF', link: 'https://socket.io/docs/v4/' },
+        { name: 'Socket.io', icon: SocketIcon, color: '#FFFFFF', link: 'https://socket.io/docs/v4/', whiteLogo: true },
     ],
     'Languages': [
         { name: 'JavaScript', icon: JavaScriptIcon, color: '#F7DF1E', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },

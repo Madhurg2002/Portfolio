@@ -19,13 +19,14 @@ export const Skills: React.FC = () => {
                                     rel="noopener noreferrer"
                                     className="group flex items-center gap-3 p-3.5 rounded-xl border border-carbon-700 bg-carbon-850 hover:border-heat-400/50 hover:bg-carbon-800 transition duration-200"
                                 >
-                                    {/* fixed dark chip: keeps light/white brand logos visible in both themes */}
-                                    <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-[#18181d] border border-white/10 flex-shrink-0 overflow-hidden">
+                                    {/* theme-aware tile: dark in dark mode, light gray in light mode;
+                                        white monochrome logos get darkened via .skill-icon-white */}
+                                    <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-carbon-800 border border-carbon-700 flex-shrink-0 overflow-hidden">
                                         <img
                                             src={typeof skill.icon === 'string' ? skill.icon : undefined}
                                             alt={skill.name}
                                             loading="lazy"
-                                            className="skill-icon w-5 h-5"
+                                            className={`skill-icon w-5 h-5${skill.whiteLogo ? ' skill-icon-white' : ''}`}
                                         />
                                     </span>
                                     <span className="text-sm font-medium text-carbon-200 group-hover:text-carbon-100 transition">{skill.name}</span>
