@@ -11,15 +11,18 @@ interface Achievement {
      *  title becomes a link out. Left unset rather than guessed at: a wrong
      *  URL on a publication is worse than no link. */
     link?: string;
-    /** Short label for the outbound link's accessible name. */
+    /** Appended to the title to form the link's accessible name, for screen
+     *  readers only. Defaults to a generic "opens X in a new tab". */
     linkLabel?: string;
 }
 
 const ACHIEVEMENTS: Achievement[] = [
     {
         icon: 'file-text',
-        title: 'ACM Publication (2024)',
-        text: 'Lead author of "Map Yog — Intelligent Spatiotemporal Data Explorer" on large-scale spatial data visualization.',
+        title: 'ACM SIGSPATIAL Workshop (2024)',
+        text: 'Co-author of "MapYog — Intelligent Spatiotemporal Data Explorer", published in the 2nd ACM SIGSPATIAL International Workshop on Advances in Urban-AI.',
+        link: 'https://doi.org/10.1145/3681780.3697250',
+        linkLabel: ' — opens the ACM Digital Library in a new tab',
     },
     {
         icon: 'braces',
