@@ -32,35 +32,11 @@ export const Projects: React.FC = () => {
                                 <div className="flex items-center justify-center w-11 h-11 rounded-xl border border-carbon-700 bg-carbon-900 text-heat-400 group-hover:text-heat-300 group-hover:border-heat-400/40 transition duration-300">
                                     <Icon name="folder-git-2" className="w-5 h-5" />
                                 </div>
-                                <div className="flex items-center gap-1">
-                                    {project.repo && (
-                                        <a
-                                            href={project.repo}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            aria-label={`${project.title} source code`}
-                                            className="p-2 rounded-lg text-carbon-400 hover:text-white hover:bg-carbon-800 transition"
-                                        >
-                                            <Icon name="github" className="w-5 h-5" />
-                                        </a>
-                                    )}
-                                    {project.liveDemo && (
-                                        <a
-                                            href={project.liveDemo}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            aria-label={`${project.title} live demo`}
-                                            className="p-2 rounded-lg text-carbon-400 hover:text-white hover:bg-carbon-800 transition"
-                                        >
-                                            <Icon name="external-link" className="w-5 h-5" />
-                                        </a>
-                                    )}
-                                    {!project.repo && !project.liveDemo && (
-                                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-carbon-700 text-[11px] font-mono text-carbon-400">
-                                            <Icon name="lock" className="w-3 h-3" /> private
-                                        </span>
-                                    )}
-                                </div>
+                                {!project.repo && !project.liveDemo && (
+                                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-carbon-700 text-[11px] font-mono text-carbon-400">
+                                        <Icon name="lock" className="w-3 h-3" /> private
+                                    </span>
+                                )}
                             </div>
 
                             <h3 className="text-xl font-semibold text-white mb-2">
@@ -85,7 +61,7 @@ export const Projects: React.FC = () => {
                                         className="px-2.5 py-1 rounded-md border border-carbon-700 bg-carbon-900 font-mono text-[11px] text-phosphor-300"
                                     >
                                         {t}
-                                      </span>
+                                    </span>
                                 ))}
                             </div>
 
@@ -108,11 +84,35 @@ export const Projects: React.FC = () => {
                                 </div>
                             )}
 
-                            {/* footer row */}
-                            <div className="mt-auto flex items-center justify-between border-t border-carbon-800 pt-4">
-                                <p className="text-xs font-mono text-carbon-500">
-                                    {project.repo ? 'source available' : 'code private'}
-                                </p>
+                            {/* footer: explicit links + details toggle */}
+                            <div className="mt-auto flex items-center justify-between gap-3 border-t border-carbon-800 pt-4">
+                                <div className="flex items-center gap-4">
+                                    {project.repo && (
+                                        <a
+                                            href={project.repo}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-1.5 text-sm font-medium text-carbon-300 hover:text-heat-300 transition"
+                                        >
+                                            <Icon name="github" className="w-4 h-4" />
+                                            Code
+                                        </a>
+                                    )}
+                                    {project.liveDemo && (
+                                        <a
+                                            href={project.liveDemo}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-1.5 text-sm font-medium text-carbon-300 hover:text-heat-300 transition"
+                                        >
+                                            <Icon name="external-link" className="w-4 h-4" />
+                                            Live
+                                        </a>
+                                    )}
+                                    {!project.repo && !project.liveDemo && (
+                                        <span className="text-xs font-mono text-carbon-500">code private</span>
+                                    )}
+                                </div>
                                 {project.details && project.details.length > 0 && (
                                     <button
                                         type="button"

@@ -146,7 +146,7 @@ export const PROJECTS_DATA: ProjectEntry[] = [
     {
         title: 'Prometheus Grafana Passthrough',
         tech: 'TypeScript, Fastify, React, PostgreSQL, Vitest',
-        liveDemo: 'https://grafana-frontend.vercel.app',
+        liveDemo: 'https://grafana-helper.vercel.app/',
         repo: 'https://github.com/Madhurg2002/grafana',
         bullets: [
             'High-throughput, stateless Fastify proxy and mobile-first React frontend for routing, caching, and streaming Prometheus PromQL queries — eliminating Grafana dependencies.',
