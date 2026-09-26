@@ -50,7 +50,7 @@ export const Hero: React.FC = () => {
                     <a href="#projects" className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-xl shadow-sm text-gray-900 bg-green-400 hover:bg-green-500 transition duration-300 transform hover:scale-105">
                         View Projects
                     </a>
-                    <a href="mailto:madhurg2002@gmail.com" className="inline-flex items-center px-8 py-3 border border-green-400 text-base font-medium rounded-xl text-green-400 hover:bg-green-900 transition duration-300 transform hover:scale-105">
+                    <a href="#contact" className="inline-flex items-center px-8 py-3 border border-green-400 text-base font-medium rounded-xl text-green-400 hover:bg-green-900 transition duration-300 transform hover:scale-105">
                         Get in Touch
                     </a>
                     <a href={GITHUB_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-8 py-3 border border-green-400 text-base font-medium rounded-xl text-green-400 hover:bg-green-900 transition duration-300 transform hover:scale-105">

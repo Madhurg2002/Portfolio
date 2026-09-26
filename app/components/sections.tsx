@@ -19,22 +19,65 @@ export const AchievementsAndEducation: React.FC = () => (
 
 export const Contact: React.FC = () => (
     <SectionWrapper id="contact" title="Let's Connect" className="text-center">
-        <p className="text-gray-400 mb-8 max-w-2xl mx-auto">I'm currently seeking new full-stack opportunities. Feel free to reach out via any of the methods below!</p>
-        
-        <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <a href="mailto:madhurg2002@gmail.com" className="inline-flex items-center justify-center px-6 py-3 border border-green-400 text-base font-medium rounded-xl text-green-400 hover:bg-green-900 transition duration-300 transform hover:scale-105">
-                <Icon name="mail" className="w-5 h-5 mr-2" /> Email
+        <p className="text-gray-400 mb-4 max-w-2xl mx-auto">I'm currently seeking new full-stack opportunities. Feel free to reach out via any of the methods below!</p>
+        <div className="flex justify-center mb-10">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full border border-green-400/40 bg-green-400/10 text-green-400 text-sm font-medium">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse mr-2"></span>
+                Open to opportunities
+            </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            <a
+                href="mailto:madhurg2002@gmail.com"
+                className="group flex flex-col items-center p-6 bg-gray-800 border border-gray-700 rounded-xl transition duration-300 hover:border-green-400/60 hover:-translate-y-1 hover:shadow-lg hover:shadow-green-900/40"
+            >
+                <span className="flex items-center justify-center w-12 h-12 rounded-full bg-green-400/10 border border-green-400/30 mb-4 group-hover:bg-green-400/20 transition duration-300">
+                    <Icon name="mail" className="w-5 h-5 text-green-400" />
+                </span>
+                <span className="text-white font-semibold mb-1">Email</span>
+                <span className="text-gray-400 text-sm break-all">madhurg2002@gmail.com</span>
             </a>
-            <a href="https://wa.me/919034453365" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-6 py-3 border border-green-400 text-base font-medium rounded-xl text-green-400 hover:bg-green-900 transition duration-300 transform hover:scale-105">
-                <Icon name="message-square" className="w-5 h-5 mr-2" /> WhatsApp
+            <a
+                href="https://wa.me/919034453365"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center p-6 bg-gray-800 border border-gray-700 rounded-xl transition duration-300 hover:border-green-400/60 hover:-translate-y-1 hover:shadow-lg hover:shadow-green-900/40"
+            >
+                <span className="flex items-center justify-center w-12 h-12 rounded-full bg-green-400/10 border border-green-400/30 mb-4 group-hover:bg-green-400/20 transition duration-300">
+                    <Icon name="message-square" className="w-5 h-5 text-green-400" />
+                </span>
+                <span className="text-white font-semibold mb-1">WhatsApp</span>
+                <span className="text-gray-400 text-sm">+91 90344 53365</span>
             </a>
-            <a href="https://www.linkedin.com/in/madhurg2002/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center px-6 py-3 border border-green-400 text-base font-medium rounded-xl text-green-400 hover:bg-green-900 transition duration-300 transform hover:scale-105">
-                <Icon name="linkedin" className="w-5 h-5 mr-2" /> LinkedIn Message
+            <a
+                href="https://www.linkedin.com/in/madhurg2002/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center p-6 bg-gray-800 border border-gray-700 rounded-xl transition duration-300 hover:border-green-400/60 hover:-translate-y-1 hover:shadow-lg hover:shadow-green-900/40"
+            >
+                <span className="flex items-center justify-center w-12 h-12 rounded-full bg-green-400/10 border border-green-400/30 mb-4 group-hover:bg-green-400/20 transition duration-300">
+                    <Icon name="linkedin" className="w-5 h-5 text-green-400" />
+                </span>
+                <span className="text-white font-semibold mb-1">LinkedIn</span>
+                <span className="text-gray-400 text-sm">in/madhurg2002</span>
+            </a>
+            <a
+                href={GITHUB_PROFILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center p-6 bg-gray-800 border border-gray-700 rounded-xl transition duration-300 hover:border-green-400/60 hover:-translate-y-1 hover:shadow-lg hover:shadow-green-900/40"
+            >
+                <span className="flex items-center justify-center w-12 h-12 rounded-full bg-green-400/10 border border-green-400/30 mb-4 group-hover:bg-green-400/20 transition duration-300">
+                    <Icon name="github" className="w-5 h-5 text-green-400" />
+                </span>
+                <span className="text-white font-semibold mb-1">GitHub</span>
+                <span className="text-gray-400 text-sm">@Madhurg2002</span>
             </a>
         </div>
 
-        <div className="mt-12 text-gray-500 text-sm">
-            <p>Find me on GitHub: <a href={GITHUB_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400">github.com/Madhurg2002</a></p>
-        </div>
+        <p className="mt-10 text-gray-500 text-sm">
+            Prefer async? Email works best — I usually reply within a day.
+        </p>
     </SectionWrapper>
 );

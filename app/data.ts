@@ -35,6 +35,7 @@ export interface ProjectEntry {
     liveDemo: string | null;
     repo: string | null;
     bullets: string[];
+    details?: string[];
 }
 
 export const GITHUB_PROFILE_URL = 'https://github.com/Madhurg2002';
@@ -103,6 +104,12 @@ export const PROJECTS_DATA: ProjectEntry[] = [
             'Interactive platform for visualizing pathfinding algorithms (Dijkstra, BFS, DFS) with dynamic obstacle placement and animated step-by-step execution.',
             "Includes Conway's Game of Life plus real-time multiplayer games via Socket.io, and is extendable to Sudoku and sorting visualizations.",
         ],
+        details: [
+            'Built an interactive grid where users draw and erase walls/weights, then watch Dijkstra, BFS, and DFS explore step-by-step with adjustable animation speed.',
+            "Implemented Conway's Game of Life with pattern presets and play/pause controls.",
+            'Added real-time multiplayer games over Socket.io, with lobbies and synchronized game state across clients.',
+            'Shipped the production build on Vercel with a responsive layout that works on touch devices.',
+        ],
     },
     {
         title: 'Prometheus Grafana Passthrough',
@@ -112,6 +119,12 @@ export const PROJECTS_DATA: ProjectEntry[] = [
         bullets: [
             'High-throughput, stateless Fastify proxy and mobile-first React frontend for routing, caching, and streaming Prometheus PromQL queries — eliminating Grafana dependencies.',
             'PostgreSQL persistence with AES-256-GCM encrypted credentials, socket pooling via Undici, rate limiting, and a Vitest-tested codebase.',
+        ],
+        details: [
+            'Proxied /api/v1/query and /api/v1/query_range directly with an LRU cache and Undici socket pooling for high-throughput PromQL serving.',
+            'Protected Prometheus credentials with AES-256-GCM encryption at rest in a PostgreSQL schema, plus rate limiting and CORS on the API.',
+            'Built a mobile-first React dashboard with Recharts time-series charts and live host telemetry.',
+            'Structured the project as an npm-workspaces monorepo and covered core flows with Vitest and React Testing Library.',
         ],
     },
     {
@@ -123,6 +136,12 @@ export const PROJECTS_DATA: ProjectEntry[] = [
             'High-performance, colorized CLI that scans directories and interactively cleans space-hogging dev caches (node_modules, venvs, __pycache__, Rust/Java/Gradle builds).',
             'Detects safe-to-delete targets by checking parent manifests (package.json, Cargo.toml, pom.xml) before cleanup.',
         ],
+        details: [
+            'Wrote scanners covering Node.js, Python/Conda virtualenvs, Rust target dirs, Gradle/Maven caches, and C/C++ build folders.',
+            'Added safety checks that confirm a parent manifest (package.json, Cargo.toml, pom.xml, pyvenv.cfg) before marking a directory deletable.',
+            'Implemented interactive selection with per-item size reporting and colorized terminal output.',
+            'Packaged it as an installable CLI so a single command reclaims gigabytes of disk space.',
+        ],
     },
     {
         title: 'TicTacToe with Minimax AI',
@@ -132,6 +151,11 @@ export const PROJECTS_DATA: ProjectEntry[] = [
         bullets: [
             'Unbeatable Tic-Tac-Toe opponent built on the minimax algorithm with alpha-beta style pruning of losing branches.',
             'Console-based C++ implementation exploring game-tree search depth versus performance.',
+        ],
+        details: [
+            'Modeled the full game tree and scored terminal states so the AI always plays optimally or forces a draw.',
+            'Pruned losing branches early to keep move computation instant even in the worst case.',
+            'Wrote the console UI with input validation, win/draw detection, and replay rounds.',
         ],
     },
     {
@@ -143,6 +167,11 @@ export const PROJECTS_DATA: ProjectEntry[] = [
             'Decentralized wave portal where visitors connect a wallet and wave at me on-chain — built on Ethereum while learning Solidity.',
             'Contract interactions, transactions, and a frontend wired to the deployed smart contract on the Rinkeby test network.',
         ],
+        details: [
+            'Wrote a Solidity contract storing waves with a total counter and pseudo-random prize payout, deployed via Hardhat scripts.',
+            'Connected MetaMask wallet flows, signing real transactions on the Rinkeby test network.',
+            'Built the frontend to read past waves straight from the contract and show them with wallet addresses and timestamps.',
+        ],
     },
     {
         title: 'Discord Music Bot',
@@ -153,6 +182,11 @@ export const PROJECTS_DATA: ProjectEntry[] = [
             'Discord music bot streaming from YouTube and Soundcloud with queueing, shuffling, and volume control.',
             'Slash-command interface with a small Node.js backend for playback control.',
         ],
+        details: [
+            'Implemented a persistent queue supporting play, pause, skip, shuffle, loop, and volume commands from any server the bot joins.',
+            'Added slash-command registration so Discord natively autocompletes and validates commands.',
+            'Handled audio streaming from YouTube and Soundcloud sources with error recovery when tracks or streams fail.',
+        ],
     },
     {
         title: 'Budget Management App',
@@ -162,6 +196,11 @@ export const PROJECTS_DATA: ProjectEntry[] = [
         bullets: [
             'Comprehensive budget solution handling salary management, utilities tracking, and bill sharing functionalities.',
             'Robust support for recurring timed bills with automated reminder systems and an expense dashboard.',
+        ],
+        details: [
+            'Modeled salaries, utilities, and shared bills in MongoDB with per-user authorization on the Express API.',
+            'Built the recurring-bill engine that generates due entries on schedule and triggers automated reminders.',
+            'Created a React dashboard summarizing expenses, upcoming bills, and overall financial health at a glance.',
         ],
     },
 ];
