@@ -9,8 +9,13 @@ import { Experience } from '../components/experience';
 import { Projects } from '../components/projects';
 import { AchievementsAndEducation, Contact } from '../components/sections';
 import { Footer } from '../components/utils';
+import { useHashFocus } from '../components/hooks';
 
 const App: React.FC = () => {
+    // One listener for the whole page: every #anchor link on the site targets
+    // a <Section>, and each one has to be able to take focus.
+    useHashFocus();
+
     return (
         // overflow-x-clip (not hidden) so nothing can scroll sideways on narrow
         // screens, without turning the page into a scroll container.

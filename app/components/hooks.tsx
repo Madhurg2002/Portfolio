@@ -43,6 +43,34 @@ export function useTheme(): { theme: Theme; toggle: () => void } {
     return { theme, toggle };
 }
 
+// --- ANCHOR NAVIGATION ---
+
+/**
+ * Move keyboard focus to the section a hash link points at.
+ *
+ * Scrolling alone is not navigation as far as a keyboard or screen-reader
+ * user is concerned: the viewport moves but focus stays on the link in the
+ * navbar, so the next Tab press carries on from the top of the page and the
+ * section that was just jumped to is skipped entirely.
+ *
+ * Call this once, high in the tree. Targets must be focusable (tabIndex -1),
+ * which Section sets. preventScroll is deliberate — the browser's own
+ * fragment scrolling already handles the viewport, and letting focus scroll
+ * as well would fight it.
+ */
+export function useHashFocus() {
+    useEffect(() => {
+        const focusHash = () => {
+            const id = window.location.hash.slice(1);
+            if (!id) return;
+            document.getElementById(id)?.focus({ preventScroll: true });
+        };
+        focusHash();
+        window.addEventListener('hashchange', focusHash);
+        return () => window.removeEventListener('hashchange', focusHash);
+    }, []);
+}
+
 // --- FOCUS TRAPPING ---
 
 const FOCUSABLE_SELECTOR = [
