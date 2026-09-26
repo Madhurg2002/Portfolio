@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PROJECTS_DATA } from '../data';
+import { PROJECTS_DATA, GITHUB_PROFILE_URL } from '../data';
 import { Section, SectionHeader, Icon } from './utils';
 
 export const Projects: React.FC = () => {
@@ -63,7 +63,16 @@ export const Projects: React.FC = () => {
                                 </div>
                             </div>
 
-                            <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
+                            <h3 className="text-xl font-semibold text-white mb-2">
+                                <a
+                                    href={project.repo ?? project.liveDemo ?? GITHUB_PROFILE_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="transition-colors hover:text-heat-300"
+                                >
+                                    {project.title}
+                                </a>
+                            </h3>
                             <p className="text-sm text-carbon-300 leading-relaxed mb-4">
                                 {project.bullets[0]}
                             </p>

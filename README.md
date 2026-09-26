@@ -1,87 +1,55 @@
-# Welcome to React Router!
+# Madhur Gupta — Portfolio
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Personal portfolio website showcasing my work as a Full Stack Developer.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## 🌐 Live
 
-## Features
+**This portfolio is live at: [https://portfolio-madhurg2002.vercel.app/](https://portfolio-madhurg2002.vercel.app/)**
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+<!-- When https://madhurg2002.is-a.dev is live, swap the primary link above to:
+[https://madhurg2002.is-a.dev/](https://madhurg2002.is-a.dev/)
+-->
 
-## Getting Started
+Also reachable via [https://madhurg2002.is-a.dev/](https://madhurg2002.is-a.dev/) once the subdomain goes live.
 
-### Installation
+## ✨ Features
 
-Install the dependencies:
+- **Typewriter hero** with a terminal-style profile card and live stats
+- **Expandable project cards** — every project links to its GitHub repo or live demo, with a "What I did" breakdown of the concrete engineering behind each build
+- **Interactive skills grid** — categories from the resume: React, TypeScript, Redux, Kepler.gl, deck.gl, Node.js, PostGIS, GCP, Docker and more
+- **Timeline experience section** with detailed role highlights
+- **Achievements & education** — ACM publication, GATE CS, hackathons, IIIT Kota
+- **Contact cards** — Email, Phone, LinkedIn, GitHub, LeetCode
+- Carbon/amber terminal-inspired dark theme with ambient grid backdrop
+
+## 🛠 Tech Stack
+
+- [React 19](https://react.dev) + [React Router 7](https://reactrouter.com) (SSR)
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [TypeScript](https://www.typescriptlang.org)
+- [Lucide icons](https://lucide.dev)
+
+## 🚀 Getting Started
 
 ```bash
 npm install
+npm run dev      # development server at http://localhost:5173
 ```
 
-### Development
-
-Start the development server with HMR:
+### Build & run in production
 
 ```bash
-npm run dev
+npm run build    # outputs to build/
+npm run start    # serves the production build
 ```
 
-Your application will be available at `http://localhost:5173`.
+## 📄 Deployment
 
-## Building for Production
+Deployed on [Vercel](https://vercel.com) at [portfolio-madhurg2002.vercel.app](https://portfolio-madhurg2002.vercel.app/), with the `madhurg2002.is-a.dev` subdomain pointed at it.
 
-Create a production build:
+## 📬 Contact
 
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+- Email: [madhurg2002@gmail.com](mailto:madhurg2002@gmail.com)
+- GitHub: [@Madhurg2002](https://github.com/Madhurg2002)
+- LinkedIn: [in/madhurg2002](https://www.linkedin.com/in/madhurg2002/)
+- LeetCode: [madhurg2002](https://leetcode.com/madhurg2002/)
