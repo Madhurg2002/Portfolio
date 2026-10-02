@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# /resume streams a PDF from Google Drive server-side; nothing to index.
+Disallow: /resume
+
+Sitemap: https://portfolio-madhurg2002.vercel.app/sitemap.xml

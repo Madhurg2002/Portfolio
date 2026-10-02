@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { EXPERIENCE_DATA } from '../data';
 import { Section, SectionHeader } from './utils';
 
@@ -12,13 +12,13 @@ export const Experience: React.FC = () => {
 
                 <div className="space-y-12">
                     {EXPERIENCE_DATA.map((job, index) => (
-                        <div key={index} className="relative pl-8 md:pl-12">
+                        <div key={index} className="relative pl-7 sm:pl-8 md:pl-12">
                             {/* node */}
                             <span className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full border-2 border-heat-400 bg-carbon-950" />
 
-                            <div className="group p-6 sm:p-7 rounded-2xl border border-carbon-700 bg-carbon-850 hover:border-carbon-600 transition duration-300">
+                            <div className="group min-w-0 p-5 sm:p-6 rounded-2xl border border-carbon-700 bg-carbon-850 hover:border-carbon-600 transition duration-300">
                                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-4">
-                                    <h3 className="text-xl font-semibold text-carbon-100">
+                                    <h3 className="text-lg sm:text-xl font-semibold text-carbon-100 min-w-0">
                                         {job.title}{' '}<span className="text-heat-400">@ </span>
                                         <a
                                             href={job.company === 'Professos' ? 'https://professos.com/' : undefined}
@@ -35,7 +35,7 @@ export const Experience: React.FC = () => {
                                     {job.bullets.map((bullet, i) => (
                                         <li key={i} className="flex items-start text-sm text-carbon-300 leading-relaxed">
                                             <span className="text-phosphor-400 mr-3 mt-0.5 font-mono flex-shrink-0">▹</span>
-                                            <span dangerouslySetInnerHTML={{ __html: bullet }} />
+                                            <span className="min-w-0 break-words" dangerouslySetInnerHTML={{ __html: bullet }} />
                                         </li>
                                     ))}
                                 </ul>

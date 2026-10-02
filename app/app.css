@@ -97,6 +97,24 @@ body {
 
 /* ---------- shared utilities ---------- */
 
+/* Keyboard focus indicator.
+   Every interactive element on the site (nav links, hero CTAs, project links,
+   the "What I did" trigger, skill tiles, contact cards, theme toggle) is
+   reachable by keyboard, so focus must never be invisible. :focus-visible
+   keeps the ring off mouse clicks while guaranteeing it for keyboard users.
+   outline (not box-shadow) is deliberate - it follows the element's shape and
+   survives overflow-hidden ancestors, and it is never removed, only scoped. */
+:focus-visible {
+  outline: 2px solid var(--color-heat-400);
+  outline-offset: 2px;
+}
+
+/* Anchor targets keep their ring from being clipped by their own card. */
+a:focus-visible,
+button:focus-visible {
+  border-radius: inherit;
+}
+
 .text-gradient {
   background: linear-gradient(100deg, #fbbf24 0%, #34d399 55%, #38bdf8 115%);
   -webkit-background-clip: text;
@@ -156,16 +174,6 @@ html.light .bg-grid {
   );
 }
 
-.tilt-card {
-  border: 1px solid transparent;
-  transition:
-    transform 0.15s ease-out,
-    box-shadow 0.3s ease-out,
-    border-color 0.3s ease-out;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
 /* ---------- skill SVG handling per theme ----------
    Tiles are theme-aware (carbon-800 flips with the palette). On dark tiles
    every logo gets a soft white halo; on light tiles colored logos just get
@@ -186,6 +194,13 @@ html.light .skill-icon {
 /* must come after the rules above: same specificity, later wins */
 html.light .skill-icon-white {
   filter: brightness(0.35);
+}
+
+/* In light mode the icon tile fill (carbon-800) sits one step from the card
+   (carbon-850), so a carbon-700 border all but disappears. Step it down one
+   more so the tile still reads as a distinct surface. */
+html.light .skill-tile {
+  border-color: var(--color-carbon-600);
 }
 
 /* ---------- hero entrance ---------- */
@@ -215,5 +230,27 @@ html.light .skill-icon-white {
 }
 .rise-4 {
   animation-delay: 0.38s;
+}
+
+/* ---------- reduced motion ----------
+   The page loads with staggered entrance animations and three looping
+   pulse animations. Honour the OS setting rather than forcing them on
+   anyone who has asked for less motion. The typewriter is JS-driven, so
+   hero.tsx checks the same query and freezes it instead. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .rise {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
 }
 
