@@ -17,7 +17,7 @@ Personal portfolio website showcasing my work as a Full Stack Developer.
 - **🌗 Light & dark mode** — toggle in the navbar, follows your system preference by default, persists your choice, and applies before first paint (no flash). Brand SVGs get a subtle halo on dark backgrounds and sit cleanly on light tiles.
 - **Typewriter hero** with a terminal-style profile card and at-a-glance stats
 - **Project cards with a "What I did" modal** — every project links to its GitHub repo or live demo, with a breakdown of the concrete engineering behind each build
-- **Interactive skills grid** — React, TypeScript, Redux, Kepler.gl, deck.gl, Node.js, PostGIS, GCP, Docker and more
+- **Interactive skills grid** — React, TypeScript, Redux, Kepler.gl, deck.gl, Node.js, PostGIS, GCP, Docker, Bun and more
 - **Timeline experience section** with detailed role highlights
 - **Achievements & education** — ACM publication, GATE CS, hackathons, IIIT Kota
 - **Resume, always current** — the Resume button resolves the *most recently modified* file in [my Google Drive resume folder](https://drive.google.com/drive/folders/1Y-kttLqnemV5qcnwQhQ7_3_1D2Jas1Yw), so uploading a new resume is enough — no code change needed
@@ -33,7 +33,7 @@ Personal portfolio website showcasing my work as a Full Stack Developer.
 - [Tailwind CSS v4](https://tailwindcss.com)
 - [TypeScript](https://www.typescriptlang.org)
 - [Vite](https://vite.dev) + [Vitest](https://vitest.dev) for building and testing
-- [Lucide icons](https://lucide.dev) — only the 26 icons this site uses are inlined in `app/components/icons.tsx`, so they ship in the server-rendered HTML with no CDN request and no client-side icon swap. Each project card picks its own glyph from `data.ts`; a test asserts every icon referenced anywhere in `app/` exists there
+- [Lucide icons](https://lucide.dev) — only the 28 icons this site uses are inlined in `app/components/icons.tsx`, so they ship in the server-rendered HTML with no CDN request and no client-side icon swap. Each project card picks its own glyph from `data.ts`; a test asserts every icon referenced anywhere in `app/` exists there
 
 ## 📄 Resume — always the latest version
 
