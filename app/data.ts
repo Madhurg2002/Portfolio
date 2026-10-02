@@ -20,7 +20,8 @@ import KeplerIcon from './skillsIcons/keplergl.svg';
 import SocketIcon from './skillsIcons/socketio.svg';
 import PostmanIcon from './skillsIcons/postman.svg';
 import VSCodeIcon from './skillsIcons/vscode.svg';
-import ClaudeIcon from './skillsIcons/claude.svg';
+import ClaudeIcon from './skillsIcons/claude.svg'
+import BunIcon from './skillsIcons/bun.svg';
 // --- INTERFACES ---
 
 export interface Skill {
@@ -86,7 +87,7 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
         { name: 'Node.js', icon: NodeIcon, color: '#339933', link: 'https://nodejs.org/en/docs' },
         { name: 'Express', icon: ExpressIcon, color: '#6B7280', link: 'https://expressjs.com/', whiteLogo: true },
         { name: 'PostGIS', icon: PostgreSQLIcon, color: '#336791', link: 'https://postgis.net/documentation/' },
-        { name: 'GCP (Cloud Run)', icon: gcpIcon, color: '#4285F4', link: 'https://cloud.google.com/docs' },
+        { name: 'GCP', icon: gcpIcon, color: '#4285F4', link: 'https://cloud.google.com/docs' },
         { name: 'Docker', icon: DockerIcon, color: '#2496ED', link: 'https://docs.docker.com/' },
         { name: 'MongoDB', icon: MongoDBIcon, color: '#47A248', link: 'https://www.mongodb.com/docs/' },
         { name: 'Socket.io', icon: SocketIcon, color: '#FFFFFF', link: 'https://socket.io/docs/v4/', whiteLogo: true },
@@ -98,6 +99,7 @@ export const SKILLS_DATA: Record<string, Skill[]> = {
         { name: 'C', icon: CIcon, color: '#5C6BC0', link: 'https://devdocs.io/c/' },
     ],
     'Developer Tools': [
+        { name: 'Bun', icon: BunIcon, color: '#FBF0DF', link: 'https://bun.sh/docs' },
         { name: 'Git', icon: GitIcon, color: '#F05032', link: 'https://git-scm.com/doc' },
         { name: 'Linux', icon: LinuxIcon, color: '#E95420', link: 'https://www.linux.org/docs/tutorials.html' },
         { name: 'Postman', icon: PostmanIcon, color: '#FF6C37', link: 'https://learning.postman.com/docs/' },
@@ -116,7 +118,7 @@ export const EXPERIENCE_DATA: ExperienceEntry[] = [
             'Engineered dynamic map tools and automated data ingestion pipelines for <strong>GeoJSON</strong> and <strong>H3 vector tiles</strong> across 10+ complex layers.',
             'Integrated AI workflows (<strong>Claude</strong>) into routine development for component scaffolding, test coverage automation, and system refactoring, boosting team sprint output by 30%.',
             'Centralized global state management using <strong>Redux</strong> and broke up large views into reusable <strong>TypeScript</strong> hooks, reducing duplication.',
-            'Designed secure cloud data pipelines to fetch assets from <strong>Google Cloud Storage</strong> and deployed containerized microservices on <strong>GCP Cloud Run</strong> with OAuth 2.0 security.',
+            'Designed secure cloud data pipelines to fetch assets from cloud object storage and deployed containerized microservices as stateless containers with OAuth 2.0 security.',
             'Streamlined environment setups by containerizing backend services with <strong>Docker</strong>, cutting build times by 50% across the team.',
         ],
     },
@@ -133,6 +135,39 @@ export const EXPERIENCE_DATA: ExperienceEntry[] = [
 
 export const PROJECTS_DATA: ProjectEntry[] = [
     {
+        title: 'Skytrace — Flight Log & Great-Circle Map',
+        icon: 'plane',
+        tech: 'React 19, TypeScript, deck.gl, MapLibre GL, Drizzle ORM, PostgreSQL',
+        liveDemo: 'https://flight-visualizer-frontend-cyan.vercel.app',
+        repo: 'https://github.com/Madhurg2002/Flight-Visualizer',
+        summary:
+            'Describe a flight the way you would say it out loud — "United to Tokyo in March 2025" — and Skytrace resolves which flight you meant and draws it on a world map.',
+        details: [
+            'Built the free-text resolver: airline names, city names, IATA/ICAO codes, partial dates and route pairs are ranked into candidates, each carrying a confidence and the reason behind it. When it is unsure it asks rather than guessing, so the log only ever holds real routes.',
+            'Bundled a public aviation dataset into the repo and wired six free map-tile providers, so the whole app runs offline of any paid service with nothing to sign up for.',
+            'Drew great-circle arcs on the sphere with deck.gl over MapLibre GL, colourable by year, cabin, distance or airline, with timeline playback and PNG export.',
+            'Snapshot derived values (distance, duration, cabin-aware CO₂) at save time instead of recomputing on read, so re-deriving a 2019 entry against changed data can never quietly alter what the log remembers.',
+            'Structured as a workspace monorepo — backend, a single-origin serverless entry, the frontend, and four shared packages — with dependencies running one way only, and all four logging types checking out under one command.',
+            'Carved the share-alike aviation data out of the permissive code licence explicitly, rather than papering over the incompatibility, and documented what it means for redistribution.',
+        ],
+    },
+    {
+        title: 'todo.sh — One Command Grammar, Four Surfaces',
+        icon: 'square-terminal',
+        tech: 'Node.js, Express, ssh2, React, Server-Sent Events',
+        liveDemo: null,
+        repo: 'https://github.com/Madhurg2002/todo-cli',
+        summary:
+            'A task manager you can use as a CLI, a browser board, a CRT terminal or an SSH session — all speaking one command grammar over one shared store. The CLI needs no account and no server.',
+        details: [
+            'Wrote one pure command grammar (`parseCommand` / `runCommand`) in `@todo/shared`; the CLI, the SSH stream and the browser terminal differ only in their io sink and store adapter, so a new surface inherits every existing command.',
+            'Shipped the SSH TUI over ssh2 on port 2222 — a live line-based session against the same grammar, not a second implementation.',
+            'Added live cross-surface sync with a Server-Sent Events feed, so a task added on the CLI shows up on an open board without a refresh.',
+            'Implemented atomic JSON writes with cross-process file locking, so two surfaces writing the same `tasks.json` cannot interleave and corrupt it.',
+            'Handled accounts with scrypt password hashing and sessions, over either a per-user file or a Postgres store, and built workspace integration suites covering both the REST API and the SSH surface.',
+        ],
+    },
+    {
         title: 'Algorithm Visualizer & Multiplayer Platform',
         icon: 'route',
         tech: 'React, Node.js, Socket.io, Tailwind CSS',
@@ -144,7 +179,7 @@ export const PROJECTS_DATA: ProjectEntry[] = [
             'Designed a room-based Socket.io protocol where the server owns game state, so a dropped connection re-syncs the board instead of corrupting the match.',
             'Implemented step-by-step visualizers for Graph (Dijkstra, A*) and Sorting algorithms, maintaining smooth 60fps through optimized custom React Hooks.',
             'Implemented a deterministic, seed-based generator for Sudoku boards, producing unique, shareable game IDs and 100% reproducible board states.',
-            'Shipped Conway\u2019s Game of Life and dynamic obstacle placement; production build on Vercel with a responsive, touch-friendly layout.',
+            'Shipped Conway\u2019s Game of Life and dynamic obstacle placement, with a responsive, touch-friendly layout.',
         ],
     },
     {

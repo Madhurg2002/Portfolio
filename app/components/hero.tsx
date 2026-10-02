@@ -5,7 +5,7 @@ import { GITHUB_PROFILE_URL } from '../data';
 import { useLatestResume } from './resume';
 
 export const Hero: React.FC = () => {
-    const roles: string[] = ['Full Stack Developer', 'Geospatial Engineer', 'Backend Automation Specialist', 'UI/UX Enthusiast'];
+    const roles: string[] = ['Full Stack Developer', 'Geospatial Engineer', 'Realtime Systems Builder', 'UI/UX Enthusiast'];
     const resume = useLatestResume();
     const [displayedText, setDisplayedText] = useState<string>('');
     const [roleIndex, setRoleIndex] = useState<number>(0);
@@ -117,8 +117,8 @@ export const Hero: React.FC = () => {
 
                     <div className="rise rise-4 flex flex-wrap gap-x-10 gap-y-4">
                         {[
-                            ['25+', 'public repos'],
-                            ['2 yrs', 'shipping full-stack'],
+                            ['30+', 'public repos'],
+                            ['2+ yrs', 'shipping full-stack'],
                             ['1,000+', 'DSA problems'],
                         ].map(([value, label]) => (
                             <div key={label}>
